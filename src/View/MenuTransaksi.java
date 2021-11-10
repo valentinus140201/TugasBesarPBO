@@ -24,7 +24,7 @@ import java.util.Properties;
 
 public class MenuTransaksi implements ActionListener{
     
-    JFrame frame = new JFrame("MainMenu");
+    JFrame frame = new JFrame("MENU TRANSAKSI");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
@@ -42,18 +42,24 @@ public class MenuTransaksi implements ActionListener{
         frame.setSize(1200, 700);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
+        
         menu.setBounds(10,10,200,640);
         isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
+       
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
         menu_pasien.setBounds(35,200,120,50);
         menu_dokter.setBounds(35,260,120,50);
         menu_admin.setBounds(35,320,120,50);
+       
         menu.add(menu_dokter);
         menu.add(menu_pasien);
         menu.add(menu_admin);
+       
         menu_dokter.addActionListener(this);
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
@@ -76,6 +82,11 @@ public class MenuTransaksi implements ActionListener{
         
         frame.add(isi);
         frame.add(menu);
+        
+        frame.setUndecorated(true);
+        frame.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
         frame.setVisible(true);
     }
     

@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 
 /**
  *
@@ -19,65 +20,75 @@ import javax.swing.JPanel;
  */
 public class MenuPasien implements ActionListener{
     
-    JFrame frame = new JFrame("MenuPasien");
+    JFrame frame = new JFrame("MENU PASIEN");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
     JButton menu_pasien = new JButton("PASIEN");
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton insertPasienBaru,searchPasien,beliObat,tambahRiwayatPasien,buatJanjiTemu
-            ,lihatRiwayatPasien;
+    JButton insertPasienBaru, searchPasien, beliObat, tambahRiwayatPasien, buatJanjiTemu, lihatRiwayatPasien;
     
     public MenuPasien(){
 
-        insertPasienBaru = new JButton("Insert Pasien Baru");
-        searchPasien = new JButton("cari Pasien");
-        beliObat = new JButton("beli obat");
-        tambahRiwayatPasien = new JButton("update riwayat pasien");
-        buatJanjiTemu = new JButton("Janji Temu");
-        lihatRiwayatPasien = new JButton("lihat riwayat pasien");
+        insertPasienBaru = new JButton("INSERT PASIEN BARU");
+        searchPasien = new JButton("CARI PASIEN");
+        beliObat = new JButton("BELI OBAT");
+        tambahRiwayatPasien = new JButton("UPDATE RIWAYAT PASIEN");
+        buatJanjiTemu = new JButton("JANJI TEMU");
+        lihatRiwayatPasien = new JButton("LIHAT RIWAYAT PASIEN");
         
         frame.setSize(1200, 700);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
+        
         menu.setBounds(10,10,200,640);
         isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
         menu_pasien.setBounds(35,200,120,50);
         menu_dokter.setBounds(35,260,120,50);
         menu_admin.setBounds(35,320,120,50);
-        insertPasienBaru.setBounds(265, 10, 150, 25);
-        searchPasien.setBounds(265, 50, 130, 25);
-        tambahRiwayatPasien.setBounds(265, 90, 160, 25);
-        buatJanjiTemu.setBounds(265, 130, 120, 25);
-        lihatRiwayatPasien.setBounds(265, 170, 130, 25);
+        
+        insertPasienBaru.setBounds(350, 100, 200, 50);
+        searchPasien.setBounds(350, 200, 200, 50);
+        tambahRiwayatPasien.setBounds(350, 300, 200, 50);
+        buatJanjiTemu.setBounds(350, 400, 200, 50);
+        lihatRiwayatPasien.setBounds(350, 500, 200, 50);
         
         isi.add(insertPasienBaru);
         isi.add(searchPasien);
         isi.add(tambahRiwayatPasien);
         isi.add(lihatRiwayatPasien);
         isi.add(buatJanjiTemu);
+        
         menu.add(menu_dokter);
         menu.add(menu_pasien);
         menu.add(menu_admin);
+        
         menu_dokter.addActionListener(this);
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
         
-        
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         insertPasienBaru.addActionListener(this);
         searchPasien.addActionListener(this);
         tambahRiwayatPasien.addActionListener(this);
         buatJanjiTemu.addActionListener(this);
         lihatRiwayatPasien.addActionListener(this);
+        
+        frame.add(isi);
+        frame.add(menu);
+           
+        frame.setUndecorated(true);
+        frame.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        frame.setVisible(true);
     }
 
     @Override
@@ -96,22 +107,22 @@ public class MenuPasien implements ActionListener{
                 new MenuAdmin();
                 frame.setVisible(false);
                 break;
-            case "Insert Pasien Baru":
+            case "INSERT PASIEN BARU":
                 new ViewInsertPasienBaru();
                 break;
-            case "cari Pasien":
+            case "CARI PASIEN":
                 new ViewSearchPasien();
                 frame.setVisible(false);
                 break;
-            case "update riwayat pasien":
+            case "UPDATE RIWAYAT PASIEN":
                 new viewTambahRiwayatPasien();
                 frame.setVisible(false);
                 break;
-            case "Janji Temu":
+            case "JANJIT TEMU":
                 new ViewJanjiTemu();
                 frame.setVisible(false);
                 break;
-            case "lihat riwayat pasien":
+            case "LIHAT RIWAYAT PASIEN":
                 new viewLihatRiwayat1Pasien();
                 frame.setVisible(false);
                 break;
