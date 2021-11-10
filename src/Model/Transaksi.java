@@ -14,31 +14,42 @@ import java.util.Date;
 public class Transaksi implements InterfaceGolongan{
     
     private String idTransaksi;
-    private Date tanggakMasuk;
+    private Date tanggalMasuk;
     private int jumlah;
     private int JenisPasien;
     private double hargaKonsultasi;
     private double total;
     private double hargaObat;
     private Pasien pasien;
-    private Dokter dokter;
+    private boolean isBayar;
     
     
     public Transaksi(){
         
     }
 
-    public Transaksi(String idTransaksi, Date tanggakMasuk, int jumlah, int JenisPasien, double hargaKonsultasi, double total, double hargaObat, Pasien pasien, Dokter dokter) {
+    public Transaksi(String idTransaksi, Date tanggalMasuk, int jumlah, int JenisPasien, double hargaKonsultasi, double total, double hargaObat, Pasien pasien, boolean isBayar) {
         this.idTransaksi = idTransaksi;
-        this.tanggakMasuk = tanggakMasuk;
+        this.tanggalMasuk = tanggalMasuk;
         this.jumlah = jumlah;
         this.JenisPasien = JenisPasien;
         this.hargaKonsultasi = hargaKonsultasi;
         this.total = total;
         this.hargaObat = hargaObat;
         this.pasien = pasien;
-        this.dokter = dokter;
+        this.isBayar = isBayar;
     }
+
+   
+
+    public boolean getIsBayar() {
+        return isBayar;
+    }
+
+    public void setIsBayar(boolean isBayar) {
+        this.isBayar = isBayar;
+    }
+  
 
     public Pasien getPasien() {
         return pasien;
@@ -48,13 +59,6 @@ public class Transaksi implements InterfaceGolongan{
         this.pasien = pasien;
     }
 
-    public Dokter getDokter() {
-        return dokter;
-    }
-
-    public void setDokter(Dokter dokter) {
-        this.dokter = dokter;
-    }
 
     
     public String getIdTransaksi() {
@@ -65,13 +69,14 @@ public class Transaksi implements InterfaceGolongan{
         this.idTransaksi = idTransaksi;
     }
 
-    public Date getTanggakMasuk() {
-        return tanggakMasuk;
+    public Date getTanggalMasuk() {
+        return tanggalMasuk;
     }
 
-    public void setTanggakMasuk(Date tanggakMasuk) {
-        this.tanggakMasuk = tanggakMasuk;
+    public void setTanggalMasuk(Date tanggalMasuk) {
+        this.tanggalMasuk = tanggalMasuk;
     }
+
 
     public int getJumlah() {
         return jumlah;
@@ -115,7 +120,7 @@ public class Transaksi implements InterfaceGolongan{
 
     @Override
     public String toString() {
-        return "Transaksi{" + "idTransaksi=" + idTransaksi + ", tanggakMasuk=" + tanggakMasuk + ", jumlah=" + jumlah + ", JenisPasien=" + JenisPasien + ", hargaKonsultasi=" + hargaKonsultasi + ", hargaObat=" + hargaObat + ", total=" + total + '}';
+        return "Transaksi{" + "idTransaksi=" + idTransaksi + ", tanggakMasuk=" + tanggalMasuk + ", jumlah=" + jumlah + ", JenisPasien=" + JenisPasien + ", hargaKonsultasi=" + hargaKonsultasi + ", hargaObat=" + hargaObat + ", total=" + total + '}';
     }
     
     
