@@ -6,8 +6,8 @@
 package View;
 
 import Controller.ControllerDokter;
-import Model.Dokter;
-import Model.Transaksi;
+import Model.*;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,12 +19,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import Controller.*;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author V for Vladimir
  */
 public class ViewJanjiTemu implements ActionListener{
+    ControllerPasien conPasien = new ControllerPasien();
+    ControllerTransaksi conTransaksi = new ControllerTransaksi();
     JFrame janjiTemu = new JFrame("buat Janji Temu pasien dengan dokter");
     JLabel NIKLabel,poliLabel,dokterLabel,hargaLabel;
     JTextField NIKField;
@@ -150,10 +155,28 @@ public class ViewJanjiTemu implements ActionListener{
                 NIKLabel.setText("NIK");
                 break;
             case "Done":
+                String nik = NIKField.getText();
+                Pasien pasien = conPasien.getPasien(nik);
                 double hargaKonsul = 15000;
+                Transaksi transaksi = new Transaksi();
+                transaksi.setTanggalMasuk(new Date());
+                transaksi.setIsBayar(false);
+                int isBpjs = 0;
+                if(pasien.getBPJS() == GolonganPasien.BPJS){
+                    isBpjs = 1;
+                }
+                transaksi.setJenisPasien(isBpjs);
+                transaksi.setHargaKonsultasi(15000);
+                transaksi.setTotal(15000);
+                transaksi.setPasien(pasien);
+                transaksi.setHargaObat(0);
+                transaksi.setJumlah(0);
                 hargaLabel.setText("harga = " + hargaKonsul);
-                new ViewBeliObatPasien(NIKField.getText(),hargaKonsul);
+                conTransaksi.insterTransaksibyJanjiTemu(transaksi);
                 janjiTemu.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Janji Temu Berhasil Dimasukan");
+                new MenuPasien();
+                
                 break;
             default: 
                 break;
