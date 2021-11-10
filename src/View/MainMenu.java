@@ -24,7 +24,7 @@ import java.util.Properties;
 
 public class MainMenu implements ActionListener{
     
-    JFrame frame = new JFrame("MainMenu");
+    JFrame frame = new JFrame("MAIN MENU");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
@@ -53,11 +53,11 @@ public class MainMenu implements ActionListener{
         menuPasien.setBounds(35,200,120,50);
         menuDokter.setBounds(35,260,120,50);
         menuAdmin.setBounds(35,320,120,50);
-        
+      
         menu.add(menuDokter);
         menu.add(menuPasien);
         menu.add(menuAdmin);
-        
+
         menuDokter.addActionListener(this);
         menuPasien.addActionListener(this);
         menuAdmin.addActionListener(this);
@@ -73,10 +73,10 @@ public class MainMenu implements ActionListener{
         
         homePertama.setBounds(100, 20, 750, 100);
         homeKedua.setBounds(100, 110, 500, 100);
-        
+   
         isi.add(homePertama);
         isi.add(homeKedua);
-        
+
         frame.add(isi);
         frame.add(menu);
         
