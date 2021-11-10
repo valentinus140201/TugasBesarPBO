@@ -1,43 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
+import Controller.ControllerTransaksi;
+import Model.Singleton;
+import Model.Transaksi;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+public class LihatKeuntungan implements ActionListener{
 /**
  *
  * @author hp
  */
-
-import Model.Singleton;
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Properties;
-
-public class MenuTransaksi implements ActionListener{
     
-    JFrame frame = new JFrame("MainMenu");
+    JFrame frame = new JFrame("MenuAdmin");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
     JButton menu_pasien = new JButton("PASIEN");
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton obatPasien = new JButton("PERNCAIRAN RESEP DOKTER");
-    JButton lihatTransaksi = new JButton("LIHAT SEMUA TRANSAKSI");
-    JButton bayarTransaksi = new JButton("BAYAR TAGIHAN");
-    JButton lihatKeuntungan = new JButton("LIHAT KEUNTUNGAN");
+    JButton kembali_ke_menu = new JButton("KEMBALI KE MENU");
     
-    
-    public MenuTransaksi(){
+
+    public LihatKeuntungan(){
         
         frame.setSize(1200, 700);
         frame.setLocationRelativeTo(null);
@@ -57,29 +49,39 @@ public class MenuTransaksi implements ActionListener{
         menu_dokter.addActionListener(this);
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
+
         
-        obatPasien.setBounds(350,100,200,50);
-        isi.add(obatPasien);
-        obatPasien.addActionListener(this);
+        JLabel labidCabang = new JLabel("Nama Cabang : ");
+        JLabel labKeuntungan = new JLabel("Keuntungan : ");
         
-        lihatTransaksi.setBounds(350,170,200,50);
-        isi.add(lihatTransaksi);
-        lihatTransaksi.addActionListener(this);
+        ArrayList<Transaksi> listTransaksi = ControllerTransaksi.getAllTransaksi("");
+        long Keuntungan = 0;
+        for (Transaksi transaksi : listTransaksi) {
+            Keuntungan += transaksi.getTotal();
+        }
+        JLabel isilabidCabang = new JLabel(Singleton.getInstance().getCabang().getNama());
+        JLabel isilabKeuntungan = new JLabel("Rp. " + Keuntungan);
         
-        bayarTransaksi.setBounds(350,240,200,50);
-        isi.add(bayarTransaksi);
-        bayarTransaksi.addActionListener(this);
         
-        lihatKeuntungan.setBounds(350,310,200,50);
-        isi.add(lihatKeuntungan);
-        lihatKeuntungan.addActionListener(this);
+        labidCabang.setBounds(50, 80, 110, 20);
+        isi.add(labidCabang);
+        isilabidCabang.setBounds(200, 80, 300, 20);
+        isi.add(isilabidCabang);
+        labKeuntungan.setBounds(50, 110, 80, 20);
+        isi.add(labKeuntungan);
+        isilabKeuntungan.setBounds(200, 110, 300, 20);
+        isi.add(isilabKeuntungan);
+        
+        kembali_ke_menu.addActionListener(this);
+        kembali_ke_menu.setBounds(350, 200, 150, 50);
+        isi.add(kembali_ke_menu);
         
         frame.add(isi);
         frame.add(menu);
         frame.setVisible(true);
+        
     }
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
@@ -96,25 +98,13 @@ public class MenuTransaksi implements ActionListener{
                 new MenuAdmin();
                 frame.setVisible(false);
                 break;
-            case "PERNCAIRAN RESEP DOKTER":
-                new PrePencairanResepDokter();
+            case "KEMBALI KE MENU":
                 frame.setVisible(false);
+                new MenuAdmin();
                 break;
-            case "LIHAT SEMUA TRANSAKSI":
-                new LihatSemuaTransaksi();
-                frame.setVisible(false);
-                break;
-            case "BAYAR TAGIHAN":
-                new PreBayarTagihanNik();
-                frame.setVisible(false);
-                break;
-            case "LIHAT KEUNTUNGAN":
-                new LihatKeuntungan();
-                frame.setVisible(false);
-                break;    
             default: 
                 break;
         }
     }
-    
 }
+

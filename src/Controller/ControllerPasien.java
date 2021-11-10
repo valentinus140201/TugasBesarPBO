@@ -66,7 +66,11 @@ public class ControllerPasien {
                 pasien.setGender(rs.getString("Gender"));
                 pasien.setAlergi(rs.getString("Alergi"));
                 pasien.setPenyakitMenurun(rs.getString("Penyakit_Menurun"));
-                pasien.setBPJS(GolonganPasien.valueOf(rs.getString("Golongan")));
+                if(rs.getString("Golongan").equals("BPJS")){
+                    pasien.setBPJS(GolonganPasien.BPJS);
+                }else{
+                    pasien.setBPJS(GolonganPasien.NON_BPJS);
+                }
                 pasien.setAlamat(rs.getString("Alamat"));
                 pasien.setTelepon(rs.getString("No_telepon"));
             }

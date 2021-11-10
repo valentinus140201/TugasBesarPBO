@@ -10,7 +10,8 @@ package View;
  * @author hp
  */
 
-import Model.Singleton;
+import Model.*;
+import Controller.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -22,22 +23,24 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Properties;
 
-public class MenuTransaksi implements ActionListener{
+public class PencairanResepDokter implements ActionListener{
+    ControllerDokter control = new ControllerDokter();
     
-    JFrame frame = new JFrame("MainMenu");
+    JFrame frame = new JFrame("Pre Update Dokter");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
     JButton menu_pasien = new JButton("PASIEN");
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton obatPasien = new JButton("PERNCAIRAN RESEP DOKTER");
-    JButton lihatTransaksi = new JButton("LIHAT SEMUA TRANSAKSI");
-    JButton bayarTransaksi = new JButton("BAYAR TAGIHAN");
-    JButton lihatKeuntungan = new JButton("LIHAT KEUNTUNGAN");
+    
+    JLabel idTransaksi = new JLabel("Id Transaksi");
+    JButton hitung = new JButton("CAIRKAN OBAT");
+    String[] listIdTransaksi;
+    JComboBox boxIdTransaksi;
     
     
-    public MenuTransaksi(){
+    public PencairanResepDokter(ArrayList<Transaksi> listTransaksi){
         
         frame.setSize(1200, 700);
         frame.setLocationRelativeTo(null);
@@ -57,22 +60,27 @@ public class MenuTransaksi implements ActionListener{
         menu_dokter.addActionListener(this);
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
+        hitung.addActionListener(this);
         
-        obatPasien.setBounds(350,100,200,50);
-        isi.add(obatPasien);
-        obatPasien.addActionListener(this);
+        idTransaksi.setBounds(290, 260, 100, 20);
+        hitung.setBounds(350,300,120,50);
         
-        lihatTransaksi.setBounds(350,170,200,50);
-        isi.add(lihatTransaksi);
-        lihatTransaksi.addActionListener(this);
+        listIdTransaksi = new String[listTransaksi.size()];
         
-        bayarTransaksi.setBounds(350,240,200,50);
-        isi.add(bayarTransaksi);
-        bayarTransaksi.addActionListener(this);
+        for(int i = 0; i < listTransaksi.size(); i++){
+            Transaksi transaksi = listTransaksi.get(i);
+            listIdTransaksi[i] = transaksi.getIdTransaksi();
+        }
         
-        lihatKeuntungan.setBounds(350,310,200,50);
-        isi.add(lihatKeuntungan);
-        lihatKeuntungan.addActionListener(this);
+        boxIdTransaksi = new JComboBox(listIdTransaksi);
+        boxIdTransaksi.setBounds(400, 260, 100, 20);
+        
+        
+        
+        isi.add(hitung);
+        isi.add(boxIdTransaksi);
+        isi.add(idTransaksi);
+        
         
         frame.add(isi);
         frame.add(menu);
@@ -96,25 +104,15 @@ public class MenuTransaksi implements ActionListener{
                 new MenuAdmin();
                 frame.setVisible(false);
                 break;
-            case "PERNCAIRAN RESEP DOKTER":
-                new PrePencairanResepDokter();
+            case "CAIRKAN OBAT":
+                ControllerTransaksi control = new ControllerTransaksi();
+                String strIdTransaksi = String.valueOf(boxIdTransaksi.getSelectedItem());;
+                Transaksi transaksi = control.getTransaksi(strIdTransaksi);
+                new ViewBeliObatPasien(transaksi);
                 frame.setVisible(false);
                 break;
-            case "LIHAT SEMUA TRANSAKSI":
-                new LihatSemuaTransaksi();
-                frame.setVisible(false);
-                break;
-            case "BAYAR TAGIHAN":
-                new PreBayarTagihanNik();
-                frame.setVisible(false);
-                break;
-            case "LIHAT KEUNTUNGAN":
-                new LihatKeuntungan();
-                frame.setVisible(false);
-                break;    
-            default: 
+             default: 
                 break;
         }
     }
-    
 }

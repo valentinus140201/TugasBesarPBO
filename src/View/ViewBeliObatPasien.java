@@ -44,9 +44,8 @@ public class ViewBeliObatPasien implements ActionListener{
     JButton menu_admin = new JButton("ADMINISTRASI");
     String NIKInput;
     double hargaKonsul;
-    public ViewBeliObatPasien(String NIK,double hargaKonsultasi){
-        NIKInput = NIK;
-        hargaKonsul = hargaKonsultasi;
+    Transaksi tempTransaksi;
+    public ViewBeliObatPasien(Transaksi transaksi){
         totalHargaLabel = new JLabel();
         formBeliObat.setSize(1200, 700);
         jumlahJenisObatLabel = new JLabel("jumlah Jenis obat");
@@ -102,6 +101,7 @@ public class ViewBeliObatPasien implements ActionListener{
         menu_dokter.addActionListener(this);
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
+        tempTransaksi = transaksi;
     }
 
     @Override
@@ -178,14 +178,27 @@ public class ViewBeliObatPasien implements ActionListener{
                     totalHarga += CO.getObat(namaObatFields[i].getText()).getHargaJual() * (jumlahBeli/10);
                     CO.updateStockObat(IDObat, stockObat[i] - jumlahBeli);
                 }
+                if(tempTransaksi.getPasien().getBPJS() == GolonganPasien.BPJS){
+                    tempTransaksi.setHargaObat(0);
+                    tempTransaksi.setTotal(hargaKonsul);
+                }else{
+                    tempTransaksi.setHargaObat(totalHarga);
+                    tempTransaksi.setTotal(tempTransaksi.getHargaKonsultasi() + totalHarga);
+                }
                 t.setHargaObat(totalHarga);
                 t.setJenisPasien(golonganPasien);
+                
+                tempTransaksi.setJumlah(namaObatFields.length);
                 t.setJumlah(namaObatFields.length);
                 Date hariIni = new Date();
-                t.setTanggakMasuk(hariIni);
+                t.setTanggalMasuk(hariIni);
                 t.setTotal(totalHarga + hargaKonsul);
-                 ControllerTransaksi.insertNewTransaksi(t);
+                ControllerTransaksi.insertTransaksibyBeliObat(tempTransaksi);
+                 //ControllerTransaksi.insertNewTransaksi(t);
                 totalHargaLabel.setText("total harga : " + t.getTotal());
+                formBeliObat.setVisible(false);
+                JOptionPane.showMessageDialog(null, "Pembelian Obat Telah Selesai");
+                new MenuAdmin();
                 break;
             case "Kembali" :
                 jumlahJenisObatLabel.setVisible(true);

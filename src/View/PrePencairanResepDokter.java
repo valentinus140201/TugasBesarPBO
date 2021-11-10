@@ -10,7 +10,9 @@ package View;
  * @author hp
  */
 
-import Model.Singleton;
+import Controller.ControllerDokter;
+import Controller.ControllerTransaksi;
+import Model.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -20,24 +22,32 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
+import org.jdatepicker.impl.JDatePanelImpl;
+import org.jdatepicker.impl.JDatePickerImpl;
+import org.jdatepicker.impl.UtilDateModel;
 
-public class MenuTransaksi implements ActionListener{
+public class PrePencairanResepDokter implements ActionListener{
     
-    JFrame frame = new JFrame("MainMenu");
+    JFrame frame = new JFrame("Absensi Dokter");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
+    JLabel labNik = new JLabel("NIk");
+    JTextField textNik = new JTextField();
+    
+    
     
     JButton menu_pasien = new JButton("PASIEN");
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton obatPasien = new JButton("PERNCAIRAN RESEP DOKTER");
-    JButton lihatTransaksi = new JButton("LIHAT SEMUA TRANSAKSI");
-    JButton bayarTransaksi = new JButton("BAYAR TAGIHAN");
-    JButton lihatKeuntungan = new JButton("LIHAT KEUNTUNGAN");
+    JButton cari = new JButton("CARI");
+
+    private ControllerDokter control = new ControllerDokter();
     
     
-    public MenuTransaksi(){
+    
+    public PrePencairanResepDokter(){
         
         frame.setSize(1200, 700);
         frame.setLocationRelativeTo(null);
@@ -58,21 +68,18 @@ public class MenuTransaksi implements ActionListener{
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
         
-        obatPasien.setBounds(350,100,200,50);
-        isi.add(obatPasien);
-        obatPasien.addActionListener(this);
+        labNik.setBounds(290, 230, 100, 20);
+        textNik.setBounds(400, 230, 100, 20);
         
-        lihatTransaksi.setBounds(350,170,200,50);
-        isi.add(lihatTransaksi);
-        lihatTransaksi.addActionListener(this);
+
+        cari.addActionListener(this);
+        cari.setBounds(350, 350, 150, 50);
         
-        bayarTransaksi.setBounds(350,240,200,50);
-        isi.add(bayarTransaksi);
-        bayarTransaksi.addActionListener(this);
+        isi.add(labNik);
+        isi.add(textNik);
+        isi.add(cari);
         
-        lihatKeuntungan.setBounds(350,310,200,50);
-        isi.add(lihatKeuntungan);
-        lihatKeuntungan.addActionListener(this);
+        
         
         frame.add(isi);
         frame.add(menu);
@@ -95,23 +102,14 @@ public class MenuTransaksi implements ActionListener{
             case "ADMINISTRASI":
                 new MenuAdmin();
                 frame.setVisible(false);
-                break;
-            case "PERNCAIRAN RESEP DOKTER":
-                new PrePencairanResepDokter();
+                break; 
+            case "CARI":
+                ControllerTransaksi control = new ControllerTransaksi();
+                String strnik = textNik.getText();
+                ArrayList<Transaksi> listTransaksi = control.getAllTransaksi(strnik);
                 frame.setVisible(false);
+                new PencairanResepDokter(listTransaksi);
                 break;
-            case "LIHAT SEMUA TRANSAKSI":
-                new LihatSemuaTransaksi();
-                frame.setVisible(false);
-                break;
-            case "BAYAR TAGIHAN":
-                new PreBayarTagihanNik();
-                frame.setVisible(false);
-                break;
-            case "LIHAT KEUNTUNGAN":
-                new LihatKeuntungan();
-                frame.setVisible(false);
-                break;    
             default: 
                 break;
         }

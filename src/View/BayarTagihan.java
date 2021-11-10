@@ -5,39 +5,34 @@
  */
 package View;
 
+import Controller.ControllerTransaksi;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import Model.*;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hp
  */
-
-import Model.Singleton;
-import javax.swing.*;
-import javax.swing.border.Border;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Properties;
-
-public class MenuTransaksi implements ActionListener{
+public class BayarTagihan implements ActionListener{
     
-    JFrame frame = new JFrame("MainMenu");
+    JFrame frame = new JFrame("MenuAdmin");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
     JButton menu_pasien = new JButton("PASIEN");
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton obatPasien = new JButton("PERNCAIRAN RESEP DOKTER");
-    JButton lihatTransaksi = new JButton("LIHAT SEMUA TRANSAKSI");
-    JButton bayarTransaksi = new JButton("BAYAR TAGIHAN");
-    JButton lihatKeuntungan = new JButton("LIHAT KEUNTUNGAN");
-    
-    
-    public MenuTransaksi(){
+    JButton bayarTagihan = new JButton("BAYAR TAGIHAN");
+    Transaksi tempTransaksi;
+
+    public BayarTagihan(Transaksi transaksi){
         
         frame.setSize(1200, 700);
         frame.setLocationRelativeTo(null);
@@ -57,29 +52,41 @@ public class MenuTransaksi implements ActionListener{
         menu_dokter.addActionListener(this);
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
+        bayarTagihan.setBounds(350,300,120,50);
+        bayarTagihan.addActionListener(this);
+
         
-        obatPasien.setBounds(350,100,200,50);
-        isi.add(obatPasien);
-        obatPasien.addActionListener(this);
+        JLabel labIdTransaksi = new JLabel("Id Transaksi : ");
+        JLabel labNamaPasien = new JLabel("Nama : ");
+        JLabel labTotalTagihan = new JLabel("Total Tagihan : ");
         
-        lihatTransaksi.setBounds(350,170,200,50);
-        isi.add(lihatTransaksi);
-        lihatTransaksi.addActionListener(this);
+        JLabel isilabIdTransaksi = new JLabel(transaksi.getIdTransaksi());
+        JLabel isilabNamaPasien = new JLabel(transaksi.getPasien().getNama());
+        JLabel isilabTotalTagihan = new JLabel("" + transaksi.getTotal());
         
-        bayarTransaksi.setBounds(350,240,200,50);
-        isi.add(bayarTransaksi);
-        bayarTransaksi.addActionListener(this);
+        labIdTransaksi.setBounds(50, 80, 80, 20);
+        isi.add(labIdTransaksi);
+        isilabIdTransaksi.setBounds(200, 80, 300, 20);
+        isi.add(isilabIdTransaksi);
+        labNamaPasien.setBounds(50, 110, 80, 20);
+        isi.add(labNamaPasien);
+        isilabNamaPasien.setBounds(200, 110, 300, 20);
+        isi.add(isilabNamaPasien);
+        labTotalTagihan.setBounds(50, 140, 80, 20);
+        isi.add(labTotalTagihan);
+        isilabTotalTagihan.setBounds(200, 140, 300, 20);
+        isi.add(isilabTotalTagihan);
         
-        lihatKeuntungan.setBounds(350,310,200,50);
-        isi.add(lihatKeuntungan);
-        lihatKeuntungan.addActionListener(this);
+        bayarTagihan.addActionListener(this);
+        bayarTagihan.setBounds(350, 200, 150, 50);
+        isi.add(bayarTagihan);
         
         frame.add(isi);
         frame.add(menu);
         frame.setVisible(true);
+        tempTransaksi = transaksi;
     }
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
@@ -96,25 +103,14 @@ public class MenuTransaksi implements ActionListener{
                 new MenuAdmin();
                 frame.setVisible(false);
                 break;
-            case "PERNCAIRAN RESEP DOKTER":
-                new PrePencairanResepDokter();
-                frame.setVisible(false);
-                break;
-            case "LIHAT SEMUA TRANSAKSI":
-                new LihatSemuaTransaksi();
-                frame.setVisible(false);
-                break;
             case "BAYAR TAGIHAN":
-                new PreBayarTagihanNik();
+                ControllerTransaksi.insertTransaksibyBayarTagihan(tempTransaksi);
                 frame.setVisible(false);
+                new MenuAdmin();
+                JOptionPane.showMessageDialog(null, "Pembayaran Telah Berhasil, Trimaksih");
                 break;
-            case "LIHAT KEUNTUNGAN":
-                new LihatKeuntungan();
-                frame.setVisible(false);
-                break;    
             default: 
                 break;
         }
     }
-    
 }

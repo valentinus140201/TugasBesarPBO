@@ -10,7 +10,11 @@ package View;
  * @author hp
  */
 
+import Controller.ControllerTransaksi;
+import Model.Dokter;
 import Model.Singleton;
+import Model.Transaksi;
+import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -21,10 +25,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Properties;
+import javax.swing.table.JTableHeader;
 
-public class MenuTransaksi implements ActionListener{
+public class LihatSemuaTransaksi implements ActionListener{
     
-    JFrame frame = new JFrame("MainMenu");
+    JFrame frame = new JFrame("Lihat Semua Transaksi");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
@@ -33,11 +38,12 @@ public class MenuTransaksi implements ActionListener{
     JButton menu_admin = new JButton("ADMINISTRASI");
     JButton obatPasien = new JButton("PERNCAIRAN RESEP DOKTER");
     JButton lihatTransaksi = new JButton("LIHAT SEMUA TRANSAKSI");
-    JButton bayarTransaksi = new JButton("BAYAR TAGIHAN");
-    JButton lihatKeuntungan = new JButton("LIHAT KEUNTUNGAN");
+    
+    JTable table;
+    JScrollPane scroll;
     
     
-    public MenuTransaksi(){
+    public LihatSemuaTransaksi(){
         
         frame.setSize(1200, 700);
         frame.setLocationRelativeTo(null);
@@ -58,24 +64,31 @@ public class MenuTransaksi implements ActionListener{
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
         
-        obatPasien.setBounds(350,100,200,50);
-        isi.add(obatPasien);
-        obatPasien.addActionListener(this);
+        ArrayList<Transaksi> listTransaksi = ControllerTransaksi.getAllTransaksi("");
+        String[] header = {"Id Transaksi", "NIK", "Tanggal", "Nama", "Total Harga"};
         
-        lihatTransaksi.setBounds(350,170,200,50);
-        isi.add(lihatTransaksi);
-        lihatTransaksi.addActionListener(this);
+        String[][] isitable = new String[listTransaksi.size()][5];
         
-        bayarTransaksi.setBounds(350,240,200,50);
-        isi.add(bayarTransaksi);
-        bayarTransaksi.addActionListener(this);
+        for(int i = 0; i < listTransaksi.size(); i++){
+            Transaksi transaksi = listTransaksi.get(i);
+            isitable[i][0] = transaksi.getIdTransaksi();
+            isitable[i][1] = transaksi.getPasien().getNIK();
+            isitable[i][2] = transaksi.getTanggalMasuk().toString();
+            isitable[i][3] = transaksi.getPasien().getNama();
+            isitable[i][4] = "" + transaksi.getTotal();
+        }
         
-        lihatKeuntungan.setBounds(350,310,200,50);
-        isi.add(lihatKeuntungan);
-        lihatKeuntungan.addActionListener(this);
+        table = new JTable(isitable, header);
+        scroll = new JScrollPane(table);
+        scroll.setBounds(50, 50, 800, 500);
+        isi.add(scroll);
+
         
         frame.add(isi);
         frame.add(menu);
+        frame.setUndecorated(true);
+        frame.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
     
@@ -96,22 +109,6 @@ public class MenuTransaksi implements ActionListener{
                 new MenuAdmin();
                 frame.setVisible(false);
                 break;
-            case "PERNCAIRAN RESEP DOKTER":
-                new PrePencairanResepDokter();
-                frame.setVisible(false);
-                break;
-            case "LIHAT SEMUA TRANSAKSI":
-                new LihatSemuaTransaksi();
-                frame.setVisible(false);
-                break;
-            case "BAYAR TAGIHAN":
-                new PreBayarTagihanNik();
-                frame.setVisible(false);
-                break;
-            case "LIHAT KEUNTUNGAN":
-                new LihatKeuntungan();
-                frame.setVisible(false);
-                break;    
             default: 
                 break;
         }
