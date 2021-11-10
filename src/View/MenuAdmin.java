@@ -30,6 +30,7 @@ public class MenuAdmin implements ActionListener{
     JButton rujukan = new JButton("RUJUKAN");
     JButton transaksi = new JButton("TRANSAKSI");
     
+    
     public MenuAdmin(){
         
         frame.setSize(1200, 700);
