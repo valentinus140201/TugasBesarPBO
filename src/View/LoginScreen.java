@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 
 public class LoginScreen implements ActionListener{
     
-    JFrame frame = new JFrame("Login");
+    JFrame frame = new JFrame("LOGIN");
     JPanel menu = new JPanel();
     
     JLabel labUsername = new JLabel("Username");
