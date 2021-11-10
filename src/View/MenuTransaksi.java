@@ -31,9 +31,10 @@ public class MenuTransaksi implements ActionListener{
     JButton menu_pasien = new JButton("PASIEN");
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton obatPasien = new JButton("PEMBELIAN OBAT UNTUK PASIEN");
+    JButton obatPasien = new JButton("PERNCAIRAN RESEP DOKTER");
     JButton lihatTransaksi = new JButton("LIHAT SEMUA TRANSAKSI");
-    
+    JButton bayarTransaksi = new JButton("BAYAR TAGIHAN");
+    JButton lihatKeuntungan = new JButton("LIHAT KEUNTUNGAN");
     
     
     public MenuTransaksi(){
@@ -65,7 +66,13 @@ public class MenuTransaksi implements ActionListener{
         isi.add(lihatTransaksi);
         lihatTransaksi.addActionListener(this);
         
+        bayarTransaksi.setBounds(350,240,200,50);
+        isi.add(bayarTransaksi);
+        bayarTransaksi.addActionListener(this);
         
+        lihatKeuntungan.setBounds(350,310,200,50);
+        isi.add(lihatKeuntungan);
+        lihatKeuntungan.addActionListener(this);
         
         frame.add(isi);
         frame.add(menu);
@@ -89,8 +96,22 @@ public class MenuTransaksi implements ActionListener{
                 new MenuAdmin();
                 frame.setVisible(false);
                 break;
-            case "PEMBELIAN OBAT UNTUK PASIEN":
-                
+            case "PERNCAIRAN RESEP DOKTER":
+                new PrePencairanResepDokter();
+                frame.setVisible(false);
+                break;
+            case "LIHAT SEMUA TRANSAKSI":
+                new LihatSemuaTransaksi();
+                frame.setVisible(false);
+                break;
+            case "BAYAR TAGIHAN":
+                new PreBayarTagihanNik();
+                frame.setVisible(false);
+                break;
+            case "LIHAT KEUNTUNGAN":
+                new LihatKeuntungan();
+                frame.setVisible(false);
+                break;    
             default: 
                 break;
         }
