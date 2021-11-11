@@ -67,7 +67,7 @@ public class MenuAdmin implements ActionListener{
         
         homePertama.setFont(new Font("Times New Roman", Font.BOLD, 30));
         
-        homePertama.setBounds(465, 20, 750, 100);
+        homePertama.setBounds(420, 20, 750, 100);
         input_obat.setBounds(475,120,200,50);
         restock_obat.setBounds(475,220,200,50);
         rujukan.setBounds(475,320,200,50);
