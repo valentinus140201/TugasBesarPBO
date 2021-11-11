@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -39,51 +40,55 @@ public class viewLihatRiwayat1Pasien implements ActionListener{
     JScrollPane scrollPane;
     JDatePickerImpl tglKunjungan;
     JDatePanelImpl datePanel;
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
+   
     public viewLihatRiwayat1Pasien() {
         namaLabel = new JLabel("Nama : ");
         NIKInputLabel = new JLabel("NIK");
         NIKInputField = new JTextField();
         panelMenu = new JPanel();
         panelContent = new JPanel();
-        lihatRiwayat = new JButton("lihat Riwayat");
+        lihatRiwayat = new JButton("LIHAT RIWAYAT");
         
         NIKInputLabel.setBounds(10,10,120,25);
         NIKInputField.setBounds(140,10,120,25);
-        lihatRiwayat.setBounds(800, 500, 130, 25);
+        lihatRiwayat.setBounds(100, 80, 150, 30);
         
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
         
         panelContent.add(NIKInputLabel);
         panelContent.add(NIKInputField);
         panelContent.add(lihatRiwayat);
         
-        panelMenu.add(menu_dokter);
-        panelMenu.add(menu_pasien);
-        panelMenu.add(menu_admin);
+        panelMenu.add(menuDokter);
+        panelMenu.add(menuPasien);
+        panelMenu.add(menuAdmin);
         
-        lihatRiwayatPasien.setSize(1200, 700);
+        lihatRiwayatPasien.setSize(1200, 620);
         lihatRiwayatPasien.setLocationRelativeTo(null);
         lihatRiwayatPasien.setLayout(null);
         panelMenu.setLayout(null);
         panelContent.setLayout(null);
-        panelMenu.setBounds(10,10,200,640);
-        panelContent.setBounds(230,10,930,640);
-        panelMenu.setBackground(Color.cyan);
-        panelContent.setBackground(Color.cyan);
-        lihatRiwayatPasien.add(panelContent);
-        lihatRiwayatPasien.add(panelMenu);
-        lihatRiwayatPasien.setVisible(true);
-        lihatRiwayatPasien.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panelMenu.setBounds(10,520,1170,50);
+        panelContent.setBounds(10,10,1170,500);
+        panelMenu.setBackground(Color.ORANGE);
+        panelContent.setBackground(Color.ORANGE);
         
         lihatRiwayat.addActionListener(this);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        
+        lihatRiwayatPasien.add(panelContent);
+        lihatRiwayatPasien.add(panelMenu);
+        lihatRiwayatPasien.setUndecorated(true);
+        lihatRiwayatPasien.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        lihatRiwayatPasien.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        lihatRiwayatPasien.setVisible(true);
     }
 
     @Override
@@ -102,7 +107,7 @@ public class viewLihatRiwayat1Pasien implements ActionListener{
                 new MenuAdmin();
                 lihatRiwayatPasien.setVisible(false);
                 break;
-            case "lihat Riwayat":
+            case "LIHAT RIWAYAT":
                 String[] column = {"tgl kunjungan","keluhan","penyakit","resep obat"};
                 ArrayList<RiwayatPasien> RP = ControllerRiwayatPasien.getAllRiwayatPasiens(NIKInputField.getText());
                 ArrayList<String> resepObat = ControllerRiwayatPasien.getResepObat1Pasien(NIKInputField.getText());
@@ -121,7 +126,7 @@ public class viewLihatRiwayat1Pasien implements ActionListener{
                 }
                 tableRiwayatPasien = new JTable(data,column);
                 scrollPane = new JScrollPane(tableRiwayatPasien);
-                scrollPane.setBounds(10,80,910,200);
+                scrollPane.setBounds(10,150,910,200);
                 panelContent.add(scrollPane);
                 break;
             default: 

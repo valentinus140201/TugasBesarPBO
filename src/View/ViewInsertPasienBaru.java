@@ -43,7 +43,7 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author V for Vladimir
  */
 public class ViewInsertPasienBaru implements InterfaceGolongan{
-    JFrame viewInsertNewPatient = new JFrame("Form Pasien Baru");
+    JFrame viewInsertNewPatient = new JFrame("FORM PASIEN BARU");
     JLabel NIKLabel,namaLabel,tglLahirLabel,alamatLabel,noKontakLabel,golonganLabel,
             genderLabel,alergiLabel,goldarLabel,penyakitMenurunLabel,rhesusLabel;
     JTextField NIKTextField,namaTextField,alamatTextField,noKontakTextField,
@@ -88,7 +88,7 @@ public class ViewInsertPasienBaru implements InterfaceGolongan{
         alamatTextField = new JTextField(20);
         noKontakTextField = new JTextField(20);
         BPJSRadioButton = new JRadioButton("BPJS");
-        nonBPJSRadioButton = new JRadioButton("non BPJS");
+        nonBPJSRadioButton = new JRadioButton("NON BPJS");
         wanitaRadioButton = new JRadioButton("wanita");
         priaRadioButton = new JRadioButton("pria");
         golDarA = new JRadioButton("A");
@@ -111,7 +111,7 @@ public class ViewInsertPasienBaru implements InterfaceGolongan{
         goldarButtonGroup.add(golDarO);
         rhesusButtonGroup.add(rhesusMin);
         rhesusButtonGroup.add(rhesusPlus);
-        insertNewPatient = new JButton("Tambahkan Pasien Baru");
+        insertNewPatient = new JButton("TAMBAH PASIEN BARU");
         panelContent = new JPanel();
         panelMenu = new JPanel();
         panelWithScroll = new JPanel();

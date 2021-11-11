@@ -28,6 +28,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
@@ -40,18 +41,19 @@ import org.jdatepicker.impl.UtilDateModel;
  * @author V for Vladimir
  */
 public class viewTambahRiwayatPasien implements ActionListener{
-    JFrame viewTambahRiwayat = new JFrame("Tambah Riwayat Pasien");
+    JFrame viewTambahRiwayat = new JFrame("TAMBAH RIWAYAT PASIEN");
     JLabel NIKLabel,namaLabel,penyakitLabel,tanggalKunjunganLabel,jumlahObatLabel,keluhanLabel;
     JLabel[] namaObatLabel;
-    JTextField NIKField,namaField,jumlahJenisObatField,KeluhanTextField,penyakitTextField;
+    JTextField NIKField,namaField,jumlahJenisObatField,keluhanTextField,penyakitTextField;
     JDatePickerImpl tglKunjungan;
     JDatePanelImpl datePanel;
     JTextField[] namaObatFields;
     JButton buttonInsert,buttonNext,buttonPrev;
     JPanel panelContent,panelMenu;
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
+   
     public viewTambahRiwayatPasien(){
         jumlahObatLabel = new JLabel("jumlah jenis obat pasien");
         NIKLabel = new JLabel("NIK");
@@ -62,7 +64,7 @@ public class viewTambahRiwayatPasien implements ActionListener{
         jumlahJenisObatField = new JTextField();
         NIKField  = new JTextField();
         namaField = new JTextField();
-        KeluhanTextField = new JTextField();
+        keluhanTextField = new JTextField();
         penyakitTextField = new JTextField();
         UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();
@@ -73,38 +75,43 @@ public class viewTambahRiwayatPasien implements ActionListener{
         tglKunjungan = new JDatePickerImpl(datePanel,new Model.DateLabelFormatter());
         panelContent = new JPanel();
         panelMenu = new JPanel();
-        buttonInsert = new JButton("tambahkan riwayat");
-        buttonNext = new JButton("Next");
-        buttonPrev = new JButton("Prev");
+        buttonInsert = new JButton("TAMBAHKAN RIWAYAT PASIEN");
+        buttonNext = new JButton("NEXT");
+        buttonPrev = new JButton("PREV");
         panelContent.setLayout(null);
         panelMenu.setLayout(null);
         
-        panelMenu.setBounds(10,10,200,640);
-        panelContent.setBounds(230,10,930,640);
-        panelContent.setBackground(Color.cyan);
-        panelMenu.setBackground(Color.cyan);
+        viewTambahRiwayat.setSize(1200, 620);
+        viewTambahRiwayat.setLayout(null);
+        viewTambahRiwayat.setLocationRelativeTo(null);
         
-        NIKLabel.setBounds(240, 10, 100, 25);
-        namaLabel.setBounds(240, 40, 100, 25);
-        tanggalKunjunganLabel.setBounds(240, 70, 120, 25);
-        keluhanLabel.setBounds(240, 100, 100, 25);
-        penyakitLabel.setBounds(240, 130, 100, 25);
-        jumlahObatLabel.setBounds(240, 160, 160, 25);
+        panelMenu.setBounds(10,520,1170,50);
+        panelContent.setBounds(10,10,1170,500);
         
-        NIKField.setBounds(350, 10, 120, 25);
-        namaField.setBounds(350, 40, 120, 25);
-        tglKunjungan.setBounds(370, 70, 120, 25);
-        KeluhanTextField.setBounds(350, 100, 120, 25);
-        penyakitTextField.setBounds(350, 130, 120, 25);
-        jumlahJenisObatField.setBounds(420, 160, 120, 25);
+        panelContent.setBackground(Color.ORANGE);
+        panelMenu.setBackground(Color.ORANGE);
         
-        buttonPrev.setBounds(230, 500, 100, 25);
-        buttonInsert.setBounds(800, 500, 100, 25);
-        buttonNext.setBounds(800, 500, 100, 25);
+        NIKLabel.setBounds(40, 10, 100, 25);
+        namaLabel.setBounds(40, 40, 100, 25);
+        tanggalKunjunganLabel.setBounds(40, 70, 120, 25);
+        keluhanLabel.setBounds(40, 100, 100, 25);
+        penyakitLabel.setBounds(40, 130, 100, 25);
+        jumlahObatLabel.setBounds(40, 160, 160, 25);
+        
+        NIKField.setBounds(150, 10, 120, 25);
+        namaField.setBounds(150, 40, 120, 25);
+        tglKunjungan.setBounds(170, 70, 120, 25);
+        keluhanTextField.setBounds(150, 100, 120, 25);
+        penyakitTextField.setBounds(150, 130, 120, 25);
+        jumlahJenisObatField.setBounds(220, 160, 120, 25);
+        
+        buttonPrev.setBounds(80, 200, 100, 25);
+        buttonInsert.setBounds(200, 200, 250, 25);
+        buttonNext.setBounds(200,200, 100, 25);
        
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
         
         panelContent.add(NIKLabel);
         panelContent.add(namaLabel);
@@ -115,7 +122,7 @@ public class viewTambahRiwayatPasien implements ActionListener{
         panelContent.add(NIKField);
         panelContent.add(namaField);
         panelContent.add(tglKunjungan);
-        panelContent.add(KeluhanTextField);
+        panelContent.add(keluhanTextField);
         panelContent.add(penyakitTextField);
         panelContent.add(jumlahJenisObatField);
         panelContent.add(buttonPrev);
@@ -125,25 +132,25 @@ public class viewTambahRiwayatPasien implements ActionListener{
         buttonInsert.setVisible(false);
         buttonPrev.setVisible(false);
         
-        panelMenu.add(menu_dokter);
-        panelMenu.add(menu_pasien);
-        panelMenu.add(menu_admin);
+        panelMenu.add(menuDokter);
+        panelMenu.add(menuPasien);
+        panelMenu.add(menuAdmin);
         
         viewTambahRiwayat.add(panelContent);
         viewTambahRiwayat.add(panelMenu);
         
-        viewTambahRiwayat.setSize(1200, 700);
-        viewTambahRiwayat.setLayout(null);
-        viewTambahRiwayat.setLocationRelativeTo(null);
-        viewTambahRiwayat.setVisible(true);
-        viewTambahRiwayat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         buttonInsert.addActionListener(this);
         buttonNext.addActionListener(this);
         buttonPrev.addActionListener(this);
+        
+        viewTambahRiwayat.setUndecorated(true);
+        viewTambahRiwayat.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        viewTambahRiwayat.setVisible(true);
+        viewTambahRiwayat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
 
     @Override
@@ -162,17 +169,17 @@ public class viewTambahRiwayatPasien implements ActionListener{
                 new MenuAdmin();
                 viewTambahRiwayat.setVisible(false);
                 break;
-            case "Next":
+            case "NEXT":
                 NIKLabel.setText("NIK " + NIKField.getText());
                 namaLabel.setText("Nama " + namaField.getText());
                 tanggalKunjunganLabel.setText("tgl kunjungan " + tglKunjungan.getModel().getValue());
-                keluhanLabel.setText("keluhan " + KeluhanTextField.getText());
+                keluhanLabel.setText("keluhan " + keluhanTextField.getText());
                 penyakitLabel.setText("penyakit " + penyakitTextField.getText());
                 jumlahObatLabel.setText("jumlah jenis obat " + jumlahJenisObatField.getText());
                 NIKField.setVisible(false);
                 namaField.setVisible(false);
                 tglKunjungan.setVisible(false);
-                KeluhanTextField.setVisible(false);
+                keluhanTextField.setVisible(false);
                 penyakitTextField.setVisible(false);
                 jumlahJenisObatField.setVisible(false);
                 buttonInsert.setVisible(true);
@@ -203,7 +210,7 @@ public class viewTambahRiwayatPasien implements ActionListener{
                 panelContent.validate();
                 panelContent.repaint();
                 break;
-            case "Prev":
+            case "PREV":
                 NIKLabel.setText("NIK");
                 namaLabel.setText("Nama");
                 tanggalKunjunganLabel.setText("tgl kunjungan");
@@ -213,7 +220,7 @@ public class viewTambahRiwayatPasien implements ActionListener{
                 NIKField.setVisible(true);
                 namaField.setVisible(true);
                 tglKunjungan.setVisible(true);
-                KeluhanTextField.setVisible(true);
+                keluhanTextField.setVisible(true);
                 penyakitTextField.setVisible(true);
                 jumlahJenisObatField.setVisible(true);
                 buttonInsert.setVisible(false);
@@ -229,12 +236,12 @@ public class viewTambahRiwayatPasien implements ActionListener{
                     }
                 }
                 break;
-            case "tambahkan riwayat":
+            case "TAMBAHKAN RIWAYAT":
                 Pasien p = new Pasien();
                 try {
                     p = ControllerPasien.getPasien(NIKField.getText());
                     RiwayatPasien RP = new RiwayatPasien();
-                    RP.setKeluhan(KeluhanTextField.getText());
+                    RP.setKeluhan(keluhanTextField.getText());
                     RP.setPenyakit(penyakitTextField.getText());
                     List<String> namaObats = new ArrayList<>();
                     ArrayList<Obat> obatPasien = new ArrayList<>();

@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
 
 /**
@@ -22,19 +23,19 @@ import javax.swing.JTextField;
  * @author V for Vladimir
  */
 public class ViewSearchPasien implements ActionListener{
-    JFrame viewSearchPasien = new JFrame("Search Pasien");
+    JFrame viewSearchPasien = new JFrame("CARI PASIEN");
     JLabel NIKOutputLabel,namaLabel,tglLahirLabel,golonganPasienLabel,
             alamatLabel,noKontakLabel,genderLabel,alergiLabel,goldarLabel,
             penyakitMenurunLabel,NIKInputLabel;
     JTextField NIKInputTextField;
     JButton buttonSearch,buttonUpdate;
     JPanel panelMenu,panelContent;
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     
     public ViewSearchPasien(){
-        NIKInputLabel = new JLabel("masukkan NIK pasien");
+        NIKInputLabel = new JLabel("Masukkan NIK Pasien : ");
         NIKOutputLabel = new JLabel();
         namaLabel = new JLabel();
         tglLahirLabel = new JLabel();
@@ -48,25 +49,28 @@ public class ViewSearchPasien implements ActionListener{
         NIKInputTextField = new JTextField();
         panelContent = new JPanel();
         panelMenu = new JPanel();
-        buttonSearch = new JButton("Cari Pasien");
-        buttonUpdate = new JButton("Ubah Data Pasien");
+        buttonSearch = new JButton("CARI PASIEN");
+        buttonUpdate = new JButton("UBAH DATA PASIEN");
         
-        viewSearchPasien.setSize(1200, 700);
+        viewSearchPasien.setSize(1200, 620);
         viewSearchPasien.setLocationRelativeTo(null);
         viewSearchPasien.setLayout(null);
+        
         panelMenu.setLayout(null);
         panelContent.setLayout(null);
-        panelMenu.setBounds(10,10,200,640);
-        panelContent.setBounds(230,10,930,640);
-        panelContent.setBackground(Color.cyan);
-        panelMenu.setBackground(Color.cyan);
         
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        panelMenu.setBounds(10,520,1170,50);
+        panelContent.setBounds(10,10,1170,500);
+        
+        panelContent.setBackground(Color.ORANGE);
+        panelMenu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
         NIKInputLabel.setBounds(10, 10, 150, 25);
         NIKInputTextField.setBounds(170, 10, 120, 25);
-        
         NIKOutputLabel.setBounds(10, 10, 200, 25);
         namaLabel.setBounds(10, 40, 200, 25);
         tglLahirLabel.setBounds(10, 70, 200, 25);
@@ -78,8 +82,8 @@ public class ViewSearchPasien implements ActionListener{
         goldarLabel.setBounds(10, 240, 200, 25);
         penyakitMenurunLabel.setBounds(10, 270, 200, 25);
         
-        buttonSearch.setBounds(800, 500, 120, 25);
-        buttonUpdate.setBounds(800, 500, 120, 25);
+        buttonSearch.setBounds(100, 80, 150, 30);
+        buttonUpdate.setBounds(50, 350, 150, 30);
         
         namaLabel.setVisible(false);
         tglLahirLabel.setVisible(false);
@@ -106,20 +110,25 @@ public class ViewSearchPasien implements ActionListener{
         panelContent.add(buttonSearch);
         panelContent.add(buttonUpdate);
         
-        panelMenu.add(menu_dokter);
-        panelMenu.add(menu_pasien);
-        panelMenu.add(menu_admin);
+        panelMenu.add(menuDokter);
+        panelMenu.add(menuPasien);
+        panelMenu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        buttonSearch.addActionListener(this);
+        buttonUpdate.addActionListener(this);
         
         viewSearchPasien.add(panelContent);
         viewSearchPasien.add(panelMenu);
-        viewSearchPasien.setVisible(true);
         viewSearchPasien.setLocationRelativeTo(null);
+        viewSearchPasien.setUndecorated(true);
+        viewSearchPasien.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
         viewSearchPasien.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
-        buttonSearch.addActionListener(this);
-        buttonUpdate.addActionListener(this);
+        viewSearchPasien.setVisible(true);
+
+        
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -137,7 +146,7 @@ public class ViewSearchPasien implements ActionListener{
                 new MenuAdmin();
                 viewSearchPasien.setVisible(false);
                 break;
-            case "Cari Pasien":
+            case "CARI PASIEN":
                 Pasien p = ControllerPasien.getPasien(NIKInputTextField.getText());
                 if(p != null){
                     NIKInputLabel.setVisible(false);
@@ -168,7 +177,7 @@ public class ViewSearchPasien implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Data Pasien tidak ditemukan");
                 }
                 break;
-            case "Ubah Data Pasien":
+            case "UBAH DATA PASIEN":
                 p = ControllerPasien.getPasien(NIKInputTextField.getText());
                 viewSearchPasien.setVisible(false);
                 new ViewUpdateDataPasien(p.getNIK());
