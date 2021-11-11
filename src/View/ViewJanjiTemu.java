@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import Controller.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 
 /**
  *
@@ -30,15 +31,16 @@ import javax.swing.JOptionPane;
 public class ViewJanjiTemu implements ActionListener{
     ControllerPasien conPasien = new ControllerPasien();
     ControllerTransaksi conTransaksi = new ControllerTransaksi();
-    JFrame janjiTemu = new JFrame("buat Janji Temu pasien dengan dokter");
+    JFrame janjiTemu = new JFrame("Buat Janji Temu Pasien dengan Dokter");
     JLabel NIKLabel,poliLabel,dokterLabel,hargaLabel;
     JTextField NIKField;
     JComboBox<Object>dokterField,poliField;
     JButton buttonNext,buttonBuatJanji,buttonBack;
     JPanel panelContent,panelMenu;
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
+    
     public ViewJanjiTemu(){
         NIKLabel = new JLabel("NIK");
         poliLabel = new JLabel("poli");
@@ -48,39 +50,39 @@ public class ViewJanjiTemu implements ActionListener{
         poliField = new JComboBox<>(poli);
         dokterField = new JComboBox<>();
         NIKField = new JTextField();
-        buttonBuatJanji = new JButton("Done");
-        buttonNext = new JButton("next");
-        buttonBack = new JButton("back");
+        buttonBuatJanji = new JButton("DONE");
+        buttonNext = new JButton("NEXT");
+        buttonBack = new JButton("BACK");
         panelContent = new JPanel();
         panelMenu = new JPanel();
-        buttonBuatJanji.setVisible(false);
-        buttonBack.setVisible(false);
-        dokterLabel.setVisible(false);
-        dokterField.setVisible(false);
-        
-        NIKLabel.setBounds(245, 10, 160, 25);
-        poliLabel.setBounds(245, 50, 160, 25);
-        dokterLabel.setBounds(245, 90, 160, 25);
-        dokterField.setBounds(325, 90, 160, 25);
-        NIKField.setBounds(325, 10, 160, 25);
-        poliField.setBounds(325, 50, 160, 25);
-        buttonBack.setBounds(690, 500, 100, 25);
-        buttonNext.setBounds(800, 500, 100, 25);
-        buttonBuatJanji.setBounds(800, 500, 100, 25);
-        
-        panelMenu.setBounds(10,10,200,640);
-        panelContent.setBounds(230,10,930,640);
-        
         panelContent.setLayout(null);
         panelMenu.setLayout(null);
+        
+        janjiTemu.setSize(1200, 620);
         janjiTemu.setLayout(null);
+        janjiTemu.setLocationRelativeTo(null);
+        
+        panelMenu.setBounds(10,520,1170,50);
+        panelContent.setBounds(10,10,1170,500);
+        
+        panelContent.setBackground(Color.ORANGE);
+        panelMenu.setBackground(Color.ORANGE);
+        
+        NIKLabel.setBounds(40, 10, 160, 25);
+        poliLabel.setBounds(40, 50, 160, 25);
+        dokterLabel.setBounds(40, 90, 160, 25);
+        dokterField.setBounds(120, 90, 160, 25);
+        NIKField.setBounds(120, 10, 160, 25);
+        poliField.setBounds(120, 50, 160, 25);
+        
+        buttonBack.setBounds(80, 200, 100, 25);
+        buttonNext.setBounds(200, 100, 100, 25);
+        buttonBuatJanji.setBounds(280, 200, 100, 25);
         
         
-        panelContent.setBackground(Color.cyan);
-        panelMenu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
         
         panelContent.add(NIKLabel);
         panelContent.add(NIKField);
@@ -92,18 +94,27 @@ public class ViewJanjiTemu implements ActionListener{
         panelContent.add(buttonBack);
         panelContent.add(buttonBuatJanji);
         
-        panelMenu.add(menu_admin);
-        panelMenu.add(menu_dokter);
-        panelMenu.add(menu_pasien);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        buttonBuatJanji.setVisible(false);
+        buttonBack.setVisible(false);
+        dokterLabel.setVisible(false);
+        dokterField.setVisible(false);
+        
+        panelMenu.add(menuAdmin);
+        panelMenu.add(menuDokter);
+        panelMenu.add(menuPasien);
+        
+        janjiTemu.add(panelContent);
+        janjiTemu.add(panelMenu);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         buttonNext.addActionListener(this);
         buttonBack.addActionListener(this);
         buttonBuatJanji.addActionListener(this);
-        janjiTemu.add(panelContent);
-        janjiTemu.add(panelMenu);
-        janjiTemu.setSize(1200, 700);
+        
+        janjiTemu.setUndecorated(true);
+        janjiTemu.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
         janjiTemu.setVisible(true);
         janjiTemu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -126,7 +137,7 @@ public class ViewJanjiTemu implements ActionListener{
                 new MenuAdmin();
                 janjiTemu.setVisible(false);
                 break;
-            case "next":
+            case "NEXT":
                 for (int i = 0; i < DAL.size(); i++) {
                     if(DAL.get(i).getPoliklinik().equals(poliField.getSelectedItem())){
                         dokterField.addItem(DAL.get(i).getNama());
@@ -142,7 +153,7 @@ public class ViewJanjiTemu implements ActionListener{
                 poliLabel.setText("poliklinik : " + poliField.getSelectedItem());
                 NIKLabel.setText("NIK : " + NIKField.getText());
                 break;
-            case "back":
+            case "BACK":
                 dokterField.removeAllItems();
                 dokterLabel.setVisible(false);
                 dokterField.setVisible(false);
@@ -154,7 +165,7 @@ public class ViewJanjiTemu implements ActionListener{
                 poliLabel.setText("poliklinik");
                 NIKLabel.setText("NIK");
                 break;
-            case "Done":
+            case "DONE":
                 String nik = NIKField.getText();
                 Pasien pasien = conPasien.getPasien(nik);
                 double hargaKonsul = 15000;
