@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
 
 /**
@@ -24,7 +25,7 @@ import javax.swing.JTextField;
  * @author V for Vladimir
  */
 public class ViewUpdateDataPasien implements ActionListener{
-    JFrame viewUpdateData = new JFrame("Update Data Pasien");
+    JFrame viewUpdateData = new JFrame("UPDATE DATA PASIEN");
     JLabel golonganPasienBaru,
             alamatInputBaruLabel,
             TeleponInputBaruLabel,ketentuanLabel;
@@ -34,16 +35,16 @@ public class ViewUpdateDataPasien implements ActionListener{
     JButton ubahDataPasien,buttonValidasi,buttonBack;
     JCheckBox golonganCheckBox,alamatCheckBox,teleponCheckBox;
     JPanel panelContent,panelMenu;
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     String NIKSearch;
     public ViewUpdateDataPasien(String NIK){
         NIKSearch = NIK;
         panelContent = new JPanel();
         panelMenu = new JPanel();
-        ketentuanLabel = new JLabel("silahkan tandai data yang ingin di ubah");
-        golonganPasienBaru = new JLabel("Golongan Pasien(Tulis dengan Huruf Kapital Semua)");
+        ketentuanLabel = new JLabel("Silahkan Tandai Data Yang Ingin Di Ubah");
+        golonganPasienBaru = new JLabel("Golongan Pasien (Tulis dengan Huruf Kapital Semua)");
         alamatInputBaruLabel = new JLabel("Alamat Baru Pasien");
         TeleponInputBaruLabel = new JLabel("No Telepon Baru Pasien");
         alamatInputTextField = new JTextField();
@@ -52,9 +53,9 @@ public class ViewUpdateDataPasien implements ActionListener{
         golonganCheckBox = new JCheckBox("ubah golongan");
         alamatCheckBox = new JCheckBox("ubah alamat");
         teleponCheckBox = new JCheckBox("ubah no kontak");
-        ubahDataPasien = new JButton("Ubah Data Pasien");
-        buttonValidasi = new JButton("validasi pilihan");
-        buttonBack = new JButton("kembali");
+        ubahDataPasien = new JButton("UBAH DATA PASIEN");
+        buttonValidasi = new JButton("VALIDASI PILIHAN");
+        buttonBack = new JButton("KEMBALI");
         
         alamatInputBaruLabel.setVisible(false);
         TeleponInputBaruLabel.setVisible(false);
@@ -65,33 +66,40 @@ public class ViewUpdateDataPasien implements ActionListener{
         ubahDataPasien.setVisible(false);
         buttonBack.setVisible(false);
         
+        viewUpdateData.setSize(1200, 620);
+        viewUpdateData.setLayout(null);
+        viewUpdateData.setLocationRelativeTo(null);
+        
         panelMenu.setLayout(null);
         panelContent.setLayout(null);
-        panelContent.setBackground(Color.cyan);
-        panelMenu.setBackground(Color.cyan);
+        panelContent.setBackground(Color.ORANGE);
+        panelMenu.setBackground(Color.ORANGE);
         
-        panelMenu.setBounds(10,10,200,640);
-        panelContent.setBounds(230,10,930,640);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        golonganCheckBox.setBackground(Color.ORANGE);
+        alamatCheckBox.setBackground(Color.ORANGE);
+        teleponCheckBox.setBackground(Color.ORANGE);
+        
+        panelMenu.setBounds(10,520,1170,50);
+        panelContent.setBounds(10,10,1170,500);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
         
         ketentuanLabel.setBounds(10, 10, 150, 25);
         golonganCheckBox.setBounds(10, 40, 150, 25);
         alamatCheckBox.setBounds(170, 40, 150, 25);
         teleponCheckBox.setBounds(340, 40, 150, 25);
-        
         golonganPasienBaru.setBounds(10, 10, 150, 25);
         alamatInputBaruLabel.setBounds(10, 40, 150, 25);
         TeleponInputBaruLabel.setBounds(10, 70, 150, 25);
-        
         golonganPasienTextField.setBounds(170, 10, 150, 25);
         alamatInputTextField.setBounds(170, 40, 150, 25);
         teleponInputTextField.setBounds(170, 70, 150, 25);
-        
         ubahDataPasien.setBounds(170, 190, 150, 25);
-        buttonBack.setBounds(10, 190, 150, 25);
-        buttonValidasi.setBounds(10, 190, 150, 25);
+        
+        buttonBack.setBounds(10, 190, 150, 30);
+        buttonValidasi.setBounds(80, 190, 150, 30);
         
         panelContent.add(ketentuanLabel);
         panelContent.add(golonganCheckBox);
@@ -111,23 +119,24 @@ public class ViewUpdateDataPasien implements ActionListener{
         panelContent.add(buttonValidasi);
         panelContent.add(buttonBack);
         
-        panelMenu.add(menu_dokter);
-        panelMenu.add(menu_pasien);
-        panelMenu.add(menu_admin);
+        panelMenu.add(menuDokter);
+        panelMenu.add(menuPasien);
+        panelMenu.add(menuAdmin);
         
-        viewUpdateData.add(panelContent);
-        viewUpdateData.add(panelMenu);
-        viewUpdateData.setSize(1200, 700);
-        viewUpdateData.setLayout(null);
-        viewUpdateData.setVisible(true);
-        viewUpdateData.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        viewUpdateData.setLocationRelativeTo(null);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         buttonValidasi.addActionListener(this);
         ubahDataPasien.addActionListener(this);
         buttonBack.addActionListener(this);
+        
+        viewUpdateData.add(panelContent);
+        viewUpdateData.add(panelMenu);
+        viewUpdateData.setLocationRelativeTo(null);
+        viewUpdateData.setUndecorated(true);
+        viewUpdateData.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        viewUpdateData.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        viewUpdateData.setVisible(true);
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
@@ -145,7 +154,7 @@ public class ViewUpdateDataPasien implements ActionListener{
                 new MenuAdmin();
                 viewUpdateData.setVisible(false);
                 break;
-            case "Ubah Data Pasien":
+            case "UBAH DATA PASIEN":
                 ControllerPasien cp = new ControllerPasien();
                 Pasien p = cp.getPasien(NIKSearch);
                 String golongan = "",alamat = "",telepon = "";
@@ -175,7 +184,7 @@ public class ViewUpdateDataPasien implements ActionListener{
                     JOptionPane.showMessageDialog(null, "data gagal diubah");
                 }
                 break;
-            case "validasi pilihan":
+            case "VALIDASI PILIHAN":
                 ketentuanLabel.setVisible(false);
                 buttonValidasi.setVisible(false);
                 ubahDataPasien.setVisible(true);
@@ -208,7 +217,7 @@ public class ViewUpdateDataPasien implements ActionListener{
                     golonganPasienTextField.setVisible(false);
                 }
                 break;
-            case "kembali" :
+            case "KEMBALI" :
                 ketentuanLabel.setVisible(true);
                 buttonValidasi.setVisible(true);
                 alamatCheckBox.setVisible(true);
