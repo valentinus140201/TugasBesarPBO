@@ -34,26 +34,25 @@ public class MainMenu implements ActionListener{
     JLabel homePertama;
     JLabel homeKedua;
     
-    
     public MainMenu(){
         
-        frame.setSize(1200, 700);
+        frame.setSize(1200, 620);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         
         menu.setLayout(null);
         isi.setLayout(null);
         
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
         
         menu.setBackground(Color.ORANGE);
         isi.setBackground(Color.ORANGE);
+
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
         
-        menuPasien.setBounds(35,200,120,50);
-        menuDokter.setBounds(35,260,120,50);
-        menuAdmin.setBounds(35,320,120,50);
-      
         menu.add(menuDokter);
         menu.add(menuPasien);
         menu.add(menuAdmin);
@@ -68,8 +67,8 @@ public class MainMenu implements ActionListener{
         homePertama = new JLabel(homesPertama);
         homeKedua = new JLabel(homesKedua);
         
-        homePertama.setFont(new Font("Times New Roman", Font.BOLD, 30));
-        homeKedua.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        homePertama.setFont(new Font("Times New Roman", Font.BOLD, 33));
+        homeKedua.setFont(new Font("Times New Roman", Font.PLAIN, 28));
         
         homePertama.setBounds(100, 20, 750, 100);
         homeKedua.setBounds(100, 110, 500, 100);
