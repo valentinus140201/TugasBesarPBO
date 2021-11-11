@@ -40,7 +40,7 @@ import org.jdatepicker.impl.UtilDateModel;
  * @author V for Vladimir
  */
 public class viewTambahRiwayatPasien implements ActionListener{
-    JFrame viewTambahRiwayat = new JFrame("Tambah Riwayat Pasien");
+    JFrame viewTambahRiwayat = new JFrame("TAMBAH RIWAYAT PASIEN");
     JLabel NIKLabel,namaLabel,penyakitLabel,tanggalKunjunganLabel,jumlahObatLabel,keluhanLabel;
     JLabel[] namaObatLabel;
     JTextField NIKField,namaField,jumlahJenisObatField,KeluhanTextField,penyakitTextField;
@@ -52,6 +52,7 @@ public class viewTambahRiwayatPasien implements ActionListener{
     JButton menu_pasien = new JButton("PASIEN");
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
+   
     public viewTambahRiwayatPasien(){
         jumlahObatLabel = new JLabel("jumlah jenis obat pasien");
         NIKLabel = new JLabel("NIK");
@@ -73,9 +74,9 @@ public class viewTambahRiwayatPasien implements ActionListener{
         tglKunjungan = new JDatePickerImpl(datePanel,new Model.DateLabelFormatter());
         panelContent = new JPanel();
         panelMenu = new JPanel();
-        buttonInsert = new JButton("tambahkan riwayat");
-        buttonNext = new JButton("Next");
-        buttonPrev = new JButton("Prev");
+        buttonInsert = new JButton("TAMBAHKAN RIWAYAT PASIEN");
+        buttonNext = new JButton("NEXT");
+        buttonPrev = new JButton("PREV");
         panelContent.setLayout(null);
         panelMenu.setLayout(null);
         
