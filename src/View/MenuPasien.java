@@ -129,7 +129,7 @@ public class MenuPasien implements ActionListener{
                 new viewTambahRiwayatPasien();
                 frame.setVisible(false);
                 break;
-            case "JANJIT TEMU":
+            case "JANJI TEMU":
                 new ViewJanjiTemu();
                 frame.setVisible(false);
                 break;
