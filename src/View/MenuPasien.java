@@ -7,10 +7,12 @@ package View;
 
 import Model.Singleton;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 
@@ -28,6 +30,7 @@ public class MenuPasien implements ActionListener{
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
     JButton insertPasienBaru, searchPasien, beliObat, tambahRiwayatPasien, buatJanjiTemu, lihatRiwayatPasien;
+    JLabel homePertama;
     
     public MenuPasien(){
 
@@ -38,34 +41,22 @@ public class MenuPasien implements ActionListener{
         buatJanjiTemu = new JButton("JANJI TEMU");
         lihatRiwayatPasien = new JButton("LIHAT RIWAYAT PASIEN");
         
-        frame.setSize(1200, 700);
+        frame.setSize(1200, 620);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         
         menu.setLayout(null);
         isi.setLayout(null);
         
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
         
         isi.setBackground(Color.ORANGE);
         menu.setBackground(Color.ORANGE);
         
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        
-        insertPasienBaru.setBounds(350, 100, 200, 50);
-        searchPasien.setBounds(350, 200, 200, 50);
-        tambahRiwayatPasien.setBounds(350, 300, 200, 50);
-        buatJanjiTemu.setBounds(350, 400, 200, 50);
-        lihatRiwayatPasien.setBounds(350, 500, 200, 50);
-        
-        isi.add(insertPasienBaru);
-        isi.add(searchPasien);
-        isi.add(tambahRiwayatPasien);
-        isi.add(lihatRiwayatPasien);
-        isi.add(buatJanjiTemu);
+        menu_pasien.setBounds(320,10,90,30);
+        menu_dokter.setBounds(520,10,90,30);
+        menu_admin.setBounds(720,10,120,30);
         
         menu.add(menu_dokter);
         menu.add(menu_pasien);
@@ -74,6 +65,26 @@ public class MenuPasien implements ActionListener{
         menu_dokter.addActionListener(this);
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
+        
+        String homesPertama = "MENU PASIEN";
+        
+        homePertama = new JLabel(homesPertama);
+        
+        homePertama.setFont(new Font("Times New Roman", Font.BOLD, 50));
+        
+        homePertama.setBounds(375, 20, 750, 100);
+        insertPasienBaru.setBounds(475, 120, 200, 50);
+        searchPasien.setBounds(475, 220, 200, 50);
+        tambahRiwayatPasien.setBounds(475, 320, 200, 50);
+        buatJanjiTemu.setBounds(475, 420, 200, 50);
+        lihatRiwayatPasien.setBounds(475, 520, 200, 50);
+        
+        isi.add(homePertama);
+        isi.add(insertPasienBaru);
+        isi.add(searchPasien);
+        isi.add(tambahRiwayatPasien);
+        isi.add(lihatRiwayatPasien);
+        isi.add(buatJanjiTemu);
         
         insertPasienBaru.addActionListener(this);
         searchPasien.addActionListener(this);
