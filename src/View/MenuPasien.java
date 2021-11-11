@@ -70,14 +70,14 @@ public class MenuPasien implements ActionListener{
         
         homePertama = new JLabel(homesPertama);
         
-        homePertama.setFont(new Font("Times New Roman", Font.BOLD, 50));
+        homePertama.setFont(new Font("Times New Roman", Font.BOLD, 30));
         
-        homePertama.setBounds(375, 20, 750, 100);
-        insertPasienBaru.setBounds(475, 120, 200, 50);
-        searchPasien.setBounds(475, 220, 200, 50);
-        tambahRiwayatPasien.setBounds(475, 320, 200, 50);
-        buatJanjiTemu.setBounds(475, 420, 200, 50);
-        lihatRiwayatPasien.setBounds(475, 520, 200, 50);
+        homePertama.setBounds(465, 20, 750, 100);
+        insertPasienBaru.setBounds(475, 100, 200, 50);
+        searchPasien.setBounds(475, 180, 200, 50);
+        tambahRiwayatPasien.setBounds(475, 260, 200, 50);
+        buatJanjiTemu.setBounds(475, 340, 200, 50);
+        lihatRiwayatPasien.setBounds(475, 420, 200, 50);
         
         isi.add(homePertama);
         isi.add(insertPasienBaru);
