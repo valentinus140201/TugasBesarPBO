@@ -26,9 +26,9 @@ public class MenuPasien implements ActionListener{
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     JButton insertPasienBaru, searchPasien, beliObat, tambahRiwayatPasien, buatJanjiTemu, lihatRiwayatPasien;
     JLabel homePertama;
     
@@ -54,17 +54,17 @@ public class MenuPasien implements ActionListener{
         isi.setBackground(Color.ORANGE);
         menu.setBackground(Color.ORANGE);
         
-        menu_pasien.setBounds(320,10,90,30);
-        menu_dokter.setBounds(520,10,90,30);
-        menu_admin.setBounds(720,10,120,30);
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
         
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
         
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         
         String homesPertama = "MENU PASIEN";
         
