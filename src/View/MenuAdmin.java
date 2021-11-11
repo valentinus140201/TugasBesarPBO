@@ -5,11 +5,13 @@
  */
 package View;
 
+import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 
@@ -30,26 +32,26 @@ public class MenuAdmin implements ActionListener{
     JButton restock_obat = new JButton("RESTOCK OBAT");
     JButton rujukan = new JButton("RUJUKAN");
     JButton transaksi = new JButton("TRANSAKSI");
-    
+    JLabel homePertama;
     
     public MenuAdmin(){
         
-        frame.setSize(1200, 700);
+        frame.setSize(1200, 620);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         
         menu.setLayout(null);
         isi.setLayout(null);
         
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
         
         isi.setBackground(Color.ORANGE);
         menu.setBackground(Color.ORANGE);
         
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        menu_pasien.setBounds(320,10,90,30);
+        menu_dokter.setBounds(520,10,90,30);
+        menu_admin.setBounds(720,10,120,30);
         
         menu.add(menu_dokter);
         menu.add(menu_pasien);
@@ -59,11 +61,19 @@ public class MenuAdmin implements ActionListener{
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
         
-        input_obat.setBounds(350,100,200,50);
-        restock_obat.setBounds(350,200,200,50);
-        rujukan.setBounds(350,300,200,50);
-        transaksi.setBounds(350,400,200,50);
+        String homesPertama = "MENU ADMINISTRASI";
         
+        homePertama = new JLabel(homesPertama);
+        
+        homePertama.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        
+        homePertama.setBounds(420, 20, 750, 100);
+        input_obat.setBounds(475,120,200,50);
+        restock_obat.setBounds(475,220,200,50);
+        rujukan.setBounds(475,320,200,50);
+        transaksi.setBounds(475,420,200,50);
+        
+        isi.add(homePertama);
         isi.add(input_obat);
         isi.add(restock_obat);
         isi.add(rujukan);
