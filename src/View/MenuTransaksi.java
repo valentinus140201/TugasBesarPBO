@@ -21,6 +21,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.awt.Font;
+
 
 public class MenuTransaksi implements ActionListener{
     
@@ -35,26 +37,27 @@ public class MenuTransaksi implements ActionListener{
     JButton lihatTransaksi = new JButton("LIHAT SEMUA TRANSAKSI");
     JButton bayarTransaksi = new JButton("BAYAR TAGIHAN");
     JButton lihatKeuntungan = new JButton("LIHAT KEUNTUNGAN");
+    JLabel homePertama;
     
     
     public MenuTransaksi(){
         
-        frame.setSize(1200, 700);
+        frame.setSize(1200, 620);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         
         menu.setLayout(null);
         isi.setLayout(null);
         
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
        
         isi.setBackground(Color.ORANGE);
         menu.setBackground(Color.ORANGE);
         
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        menu_pasien.setBounds(320,10,90,30);
+        menu_dokter.setBounds(520,10,90,30);
+        menu_admin.setBounds(720,10,120,30);
        
         menu.add(menu_dokter);
         menu.add(menu_pasien);
@@ -64,21 +67,29 @@ public class MenuTransaksi implements ActionListener{
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
         
-        obatPasien.setBounds(350,100,200,50);
+        String homesPertama = "MENU TRANSAKSI";
+        
+        homePertama = new JLabel(homesPertama);
+        
+        homePertama.setFont(new Font("Times New Roman", Font.BOLD, 30));
+        
+        homePertama.setBounds(430, 20, 750, 100);
+        obatPasien.setBounds(475,100,200,50);
+        lihatTransaksi.setBounds(475,180,200,50);
+        bayarTransaksi.setBounds(475,260,200,50);
+        lihatKeuntungan.setBounds(475,340,200,50);
+        
+        isi.add(homePertama);
         isi.add(obatPasien);
-        obatPasien.addActionListener(this);
-        
-        lihatTransaksi.setBounds(350,170,200,50);
         isi.add(lihatTransaksi);
-        lihatTransaksi.addActionListener(this);
-        
-        bayarTransaksi.setBounds(350,240,200,50);
         isi.add(bayarTransaksi);
-        bayarTransaksi.addActionListener(this);
-        
-        lihatKeuntungan.setBounds(350,310,200,50);
         isi.add(lihatKeuntungan);
+        
+        obatPasien.addActionListener(this);
+        lihatTransaksi.addActionListener(this);
+        bayarTransaksi.addActionListener(this);
         lihatKeuntungan.addActionListener(this);
+        
         
         frame.add(isi);
         frame.add(menu);
