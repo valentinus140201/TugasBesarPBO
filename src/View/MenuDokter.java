@@ -5,11 +5,14 @@
  */
 package View;
 
+import Model.Singleton;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 
@@ -31,26 +34,27 @@ public class MenuDokter implements ActionListener{
     JButton delete_dokter = new JButton("DELETE DOKTER");
     JButton absensi_dokter = new JButton("ABSENSI DOKTER");
     JButton hitung_gaji = new JButton("HITUNG GAJI");
+    JLabel homePertama;
     
     
     public MenuDokter(){
         
-        frame.setSize(1200, 700);
+        frame.setSize(1200, 620);
         frame.setLocationRelativeTo(null);
         frame.setLayout(null);
         
         menu.setLayout(null);
         isi.setLayout(null);
         
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
         
         isi.setBackground(Color.ORANGE);
         menu.setBackground(Color.ORANGE);
         
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        menu_pasien.setBounds(320,10,90,30);
+        menu_dokter.setBounds(520,10,90,30);
+        menu_admin.setBounds(720,10,120,30);
         
         menu.add(menu_dokter);
         menu.add(menu_pasien);
@@ -60,12 +64,20 @@ public class MenuDokter implements ActionListener{
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
         
-        insert_dokter.setBounds(350,100,200,50);
-        update_dokter.setBounds(350,200,200,50);
-        delete_dokter.setBounds(350,300,200,50);
-        absensi_dokter.setBounds(350,400,200,50);
-        hitung_gaji.setBounds(350, 500, 200, 50);
+        String homesPertama = "MENU DOKTER";
         
+        homePertama = new JLabel(homesPertama);
+        
+        homePertama.setFont(new Font("Times New Roman", Font.BOLD, 50));
+        
+        homePertama.setBounds(375, 20, 750, 100);
+        insert_dokter.setBounds(475,120,200,50);
+        update_dokter.setBounds(475,220,200,50);
+        delete_dokter.setBounds(475,320,200,50);
+        absensi_dokter.setBounds(475,420,200,50);
+        hitung_gaji.setBounds(475,520,200,50);
+        
+        isi.add(homePertama);
         isi.add(insert_dokter);
         isi.add(update_dokter);
         isi.add(delete_dokter);
