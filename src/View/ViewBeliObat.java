@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -22,29 +23,30 @@ import javax.swing.WindowConstants;
  * @author V for Vladimir
  */
 public class ViewBeliObat {
-    JFrame formBeliObat = new JFrame();
+    JFrame beliObat = new JFrame();
     JLabel jumlahJenisObatLabel,namaObatLabel,totalHarga,jumlahObatLabel;
     JTextField jumlahJenisObatField;
     JTextField[] namaObatFields,jumlahObatFields;
     JButton buttonHitungTotalHarga,buttonLanjut;
     JPanel panelContent,panelMenu;
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
+   
     public ViewBeliObat(){
-        formBeliObat.setSize(1200, 700);
-        jumlahJenisObatLabel = new JLabel("jumlah Jenis obat");
+        beliObat.setSize(1200, 620);
+        jumlahJenisObatLabel = new JLabel("Jumlah Jenis Obat");
         jumlahJenisObatField = new JTextField();
-        buttonLanjut = new JButton("Lanjut");
-        buttonHitungTotalHarga = new JButton("hitung total harga");
+        buttonLanjut = new JButton("NEXT");
+        buttonHitungTotalHarga = new JButton("Hitung Total Harga");
         panelContent = new JPanel();
         panelMenu = new JPanel();
         
         panelContent.setLayout(null);
         panelMenu.setLayout(null);
         
-        panelContent.setBackground(Color.CYAN);
-        panelMenu.setBackground(Color.CYAN);
+        panelContent.setBackground(Color.ORANGE);
+        panelMenu.setBackground(Color.ORANGE);
         
         panelMenu.setBounds(10,10,200,640);
         panelContent.setBounds(230,10,930,640);
@@ -53,9 +55,9 @@ public class ViewBeliObat {
         buttonLanjut.setBounds(265, 400, 150, 25);
         buttonHitungTotalHarga.setBounds(740, 500, 150, 25);
         
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
+        menuPasien.setBounds(35,200,120,50);
+        menuDokter.setBounds(35,260,120,50);
+        menuAdmin.setBounds(35,320,120,50);
         
         panelContent.add(jumlahJenisObatLabel);
         panelContent.add(jumlahJenisObatField);
@@ -63,16 +65,21 @@ public class ViewBeliObat {
         panelContent.add(buttonHitungTotalHarga);
         panelContent.add(buttonLanjut);
         panelContent.add(buttonLanjut);
-        panelMenu.add(menu_pasien);
-        panelMenu.add(menu_dokter);
-        panelMenu.add(menu_admin);
+        panelMenu.add(menuPasien);
+        panelMenu.add(menuDokter);
+        panelMenu.add(menuAdmin);
         
-        formBeliObat.add(panelMenu);
-        formBeliObat.add(panelContent);
-        formBeliObat.setLayout(null);
-        formBeliObat.setVisible(true);
-        formBeliObat.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        beliObat.add(panelMenu);
+        beliObat.add(panelContent);
+        beliObat.setLayout(null);
+        
+        beliObat.setUndecorated(true);
+        beliObat.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        beliObat.setVisible(true);
+        beliObat.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        
         buttonLanjut.addActionListener(new ActionListener(){
+           
             @Override
             public void actionPerformed(ActionEvent e) {
                 jumlahJenisObatLabel.setVisible(false);
@@ -84,8 +91,8 @@ public class ViewBeliObat {
                     namaObatFields = new JTextField[jml];
                     jumlahObatFields = new JTextField[jml];
                     for(int i = 0; i < namaObatFields.length; i++){
-                        namaObatLabel = new JLabel("nama obat " + (i+1));
-                        jumlahObatLabel = new JLabel("jumlah obat " + (i+1) + "(dalam mg)");
+                        namaObatLabel = new JLabel("Nama Obat " + (i+1));
+                        jumlahObatLabel = new JLabel("Jumlah Obat " + (i+1) + "(Miligram)");
                         namaObatFields[i] = new JTextField();
                         jumlahObatFields[i] = new JTextField();
                         
@@ -100,7 +107,7 @@ public class ViewBeliObat {
                         panelContent.add(jumlahObatFields[i]);
                     }
                 } catch (Exception exception) {
-                    JOptionPane.showMessageDialog(null, "input bukan angka!");
+                    JOptionPane.showMessageDialog(null, "INPUT BUKAN ANGKA!");
                     if(JOptionPane.OK_OPTION == 0){
                         jumlahJenisObatField.setText("");
                     }
