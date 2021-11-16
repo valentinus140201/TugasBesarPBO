@@ -91,7 +91,11 @@ public class DeleteDokter implements ActionListener{
         
         deleteDokter.add(isi);
         deleteDokter.add(menu);
+        
+        deleteDokter.setUndecorated(true);
+        deleteDokter.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
         deleteDokter.setVisible(true);
+        deleteDokter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     
