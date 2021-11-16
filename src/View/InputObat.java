@@ -35,13 +35,13 @@ import java.util.logging.Logger;
 
 public class InputObat implements ActionListener{
     private ControllerObat control = new ControllerObat();
-    JFrame frame = new JFrame("Input Dokter");
+    JFrame inputDokter = new JFrame("INPUT OBAT");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     JButton submit = new JButton("SUBMIT");
     
     JLabel labNama = new JLabel("Nama");
@@ -50,56 +50,61 @@ public class InputObat implements ActionListener{
     JTextField textNama = new JTextField();
     JTextField textBeli = new JTextField();
     JTextField textJual = new JTextField();
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     public InputObat(){
         //template
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        inputDokter.setSize(1200, 620);
+        inputDokter.setLocationRelativeTo(null);
+        inputDokter.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);       
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
-        labNama.setBounds(50, 160, 80, 20);
+        
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);       
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        
+        labNama.setBounds(40, 10, 160, 25);
         isi.add(labNama);
-        textNama.setBounds(200, 160, 300, 20);
+        textNama.setBounds(120, 10, 160, 25);
         isi.add(textNama);
-        labBeli.setBounds(50, 200, 80, 20);
+        
+        labBeli.setBounds(40, 60, 160, 25);
         isi.add(labBeli);
-        textBeli.setBounds(200, 200, 300, 20);
+        textBeli.setBounds(120, 60, 160, 25);
         isi.add(textBeli);
-        labJual.setBounds(50, 240, 80, 20);
+        
+        labJual.setBounds(40, 120, 160, 25);
         isi.add(labJual);
-        textJual.setBounds(200, 240, 300, 20);
+        textJual.setBounds(120, 120, 160, 25);
         isi.add(textJual);
         
-        submit.setBounds(350,400,120,50);
+        submit.setBounds(80,160,100,25);
         submit.addActionListener(this);
         isi.add(submit);
         
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        inputDokter.add(isi);
+        inputDokter.add(menu);
+        
+        inputDokter.setUndecorated(true);
+        inputDokter.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        inputDokter.setVisible(true);
+        inputDokter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       
     }
     
     public void actionPerformed(ActionEvent ae) {
@@ -107,15 +112,15 @@ public class InputObat implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                inputDokter.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                inputDokter.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                inputDokter.setVisible(false);
                 break;
             case "SUBMIT":
                 int beli = Integer.parseInt(textBeli.getText());
@@ -128,10 +133,10 @@ public class InputObat implements ActionListener{
                 obat.setHargaJual(jual);
                 boolean input = control.addObat(obat);
                 if(input == true){
-                    frame.setVisible(false);
+                    inputDokter.setVisible(false);
                     JOptionPane.showMessageDialog(null,"Data Sudah Di Tambah");
                     new MenuAdmin();
-                    frame.setVisible(false);
+                    inputDokter.setVisible(false);
                 }                
             default: 
                 break;

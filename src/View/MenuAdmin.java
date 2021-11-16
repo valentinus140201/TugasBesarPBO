@@ -26,12 +26,12 @@ public class MenuAdmin implements ActionListener{
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     JButton logout = new JButton("LOG OUT");
-    JButton input_obat = new JButton("INPUT OBAT");
-    JButton restock_obat = new JButton("RESTOCK OBAT");
+    JButton inputObat = new JButton("INPUT OBAT");
+    JButton restockObat = new JButton("RESTOCK OBAT");
     JButton rujukan = new JButton("RUJUKAN");
     JButton transaksi = new JButton("TRANSAKSI");
     JLabel homePertama;
@@ -51,19 +51,19 @@ public class MenuAdmin implements ActionListener{
         isi.setBackground(Color.ORANGE);
         menu.setBackground(Color.ORANGE);
         
-        menu_pasien.setBounds(250,10,90,30);
-        menu_dokter.setBounds(430,10,90,30);
-        menu_admin.setBounds(590,10,120,30);
+        menuPasien.setBounds(250,10,90,30);
+        menuDokter.setBounds(430,10,90,30);
+        menuAdmin.setBounds(590,10,120,30);
         logout.setBounds(790,10,120,30);
         
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
         menu.add(logout);
         
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         logout.addActionListener(this);
         
         String homesPertama = "MENU ADMINISTRASI";
@@ -73,19 +73,19 @@ public class MenuAdmin implements ActionListener{
         homePertama.setFont(new Font("Times New Roman", Font.BOLD, 30));
         
         homePertama.setBounds(420, 20, 750, 100);
-        input_obat.setBounds(475,120,200,50);
-        restock_obat.setBounds(475,220,200,50);
+        inputObat.setBounds(475,120,200,50);
+        restockObat.setBounds(475,220,200,50);
         rujukan.setBounds(475,320,200,50);
         transaksi.setBounds(475,420,200,50);
         
         isi.add(homePertama);
-        isi.add(input_obat);
-        isi.add(restock_obat);
+        isi.add(inputObat);
+        isi.add(restockObat);
         isi.add(rujukan);
         isi.add(transaksi);
         
-        input_obat.addActionListener(this);
-        restock_obat.addActionListener(this);
+        inputObat.addActionListener(this);
+        restockObat.addActionListener(this);
         rujukan.addActionListener(this);
         transaksi.addActionListener(this);
         

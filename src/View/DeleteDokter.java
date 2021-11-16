@@ -26,16 +26,16 @@ import java.util.Properties;
 public class DeleteDokter implements ActionListener{
     ControllerDokter control = new ControllerDokter();
     
-    JFrame frame = new JFrame("Delete Dokter");
+    JFrame deleteDokter = new JFrame("DELETE DOKTER");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     
     JLabel nids = new JLabel("NID");
-    JButton update = new JButton("DELETE");
+    JButton delete = new JButton("DELETE");
     ArrayList<Dokter> dokters= control.getAllDokter();
     String[] listnid;
     JComboBox nid;
@@ -44,29 +44,35 @@ public class DeleteDokter implements ActionListener{
     
     public DeleteDokter(){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        deleteDokter.setSize(1200, 620);
+        deleteDokter.setLocationRelativeTo(null);
+        deleteDokter.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
-        update.addActionListener(this);
         
-        nids.setBounds(290, 260, 100, 20);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
         
-        update.setBounds(350,300,120,50);
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        delete.addActionListener(this);
+        
+        nids.setBounds(40, 20, 160, 25);
+        
+        delete.setBounds(100,80,120,30);
         
         listnid = new String[dokters.size()];
         
@@ -76,17 +82,20 @@ public class DeleteDokter implements ActionListener{
         }
         
         nid = new JComboBox(listnid);
-        nid.setBounds(400, 260, 100, 20);
+        nid.setBounds(100, 20, 160, 25);
         
-        
-        isi.add(update);
+        isi.add(delete);
         isi.add(nids);
         isi.add(nid);
         
         
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
+        deleteDokter.add(isi);
+        deleteDokter.add(menu);
+        
+        deleteDokter.setUndecorated(true);
+        deleteDokter.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        deleteDokter.setVisible(true);
+        deleteDokter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     
@@ -96,22 +105,22 @@ public class DeleteDokter implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                deleteDokter.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                deleteDokter.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                deleteDokter.setVisible(false);
                 break;
             case "DELETE":
                 String strnid = String.valueOf(nid.getSelectedItem());;
                 boolean delete = control.deleteDokter(strnid);
-                frame.setVisible(false);
+                deleteDokter.setVisible(false);
                 if(delete == true){
-                    frame.setVisible(false);
+                    deleteDokter.setVisible(false);
                     JOptionPane.showMessageDialog(null,"Data Sudah Di Hapus");
                     new MenuDokter();
                 }

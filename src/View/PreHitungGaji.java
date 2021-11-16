@@ -26,13 +26,13 @@ import java.util.Properties;
 public class PreHitungGaji implements ActionListener{
     ControllerDokter control = new ControllerDokter();
     
-    JFrame frame = new JFrame("Pre Update Dokter");
+    JFrame preHitungGaji = new JFrame("PRE HITUNG GAJI");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     
     JLabel nids = new JLabel("NID");
     JButton hitung = new JButton("HITUNG");
@@ -43,28 +43,34 @@ public class PreHitungGaji implements ActionListener{
     
     public PreHitungGaji(){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        preHitungGaji.setSize(1200, 620);
+        preHitungGaji.setLocationRelativeTo(null);
+        preHitungGaji.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         hitung.addActionListener(this);
         
-        nids.setBounds(290, 260, 100, 20);
-        hitung.setBounds(350,300,120,50);
+        nids.setBounds(40, 20, 160, 30);
+        hitung.setBounds(100,80,120,30);
         
         listnid = new String[dokters.size()];
         
@@ -74,7 +80,7 @@ public class PreHitungGaji implements ActionListener{
         }
         
         nid = new JComboBox(listnid);
-        nid.setBounds(400, 260, 100, 20);
+        nid.setBounds(100, 20, 160, 30);
         
         
         
@@ -83,9 +89,14 @@ public class PreHitungGaji implements ActionListener{
         isi.add(nid);
         
         
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
+        preHitungGaji.add(isi);
+        preHitungGaji.add(menu);
+        
+        preHitungGaji.setUndecorated(true);
+        preHitungGaji.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        preHitungGaji.setVisible(true);
+        preHitungGaji.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
     
     
@@ -95,21 +106,21 @@ public class PreHitungGaji implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                preHitungGaji.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                preHitungGaji.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                preHitungGaji.setVisible(false);
                 break;
             case "HITUNG":
                 String strnid = String.valueOf(nid.getSelectedItem());;
                 Dokter dokter = control.getDokter(strnid);
                 new HitungGaji(dokter);
-                frame.setVisible(false);
+                preHitungGaji.setVisible(false);
                 break;
              default: 
                 break;

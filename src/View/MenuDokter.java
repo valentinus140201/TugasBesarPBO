@@ -26,14 +26,14 @@ public class MenuDokter implements ActionListener{
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton insert_dokter = new JButton("INSERT DOKTER");
-    JButton update_dokter = new JButton("UPDATE DOKTER");
-    JButton delete_dokter = new JButton("DELETE DOKTER");
-    JButton absensi_dokter = new JButton("ABSENSI DOKTER");
-    JButton hitung_gaji = new JButton("HITUNG GAJI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
+    JButton insertDokter = new JButton("INSERT DOKTER");
+    JButton updateDokter = new JButton("UPDATE DOKTER");
+    JButton deleteDokter = new JButton("DELETE DOKTER");
+    JButton absensiDokter = new JButton("ABSENSI DOKTER");
+    JButton hitungGaji = new JButton("HITUNG GAJI");
     JLabel homePertama;
     
     
@@ -52,17 +52,17 @@ public class MenuDokter implements ActionListener{
         isi.setBackground(Color.ORANGE);
         menu.setBackground(Color.ORANGE);
         
-        menu_pasien.setBounds(320,10,90,30);
-        menu_dokter.setBounds(520,10,90,30);
-        menu_admin.setBounds(720,10,120,30);
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
         
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
         
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         
         String homesPertama = "MENU DOKTER";
         
@@ -71,24 +71,24 @@ public class MenuDokter implements ActionListener{
         homePertama.setFont(new Font("Times New Roman", Font.BOLD, 30));
         
         homePertama.setBounds(465, 20, 750, 100);
-        insert_dokter.setBounds(475,100,200,50);
-        update_dokter.setBounds(475,180,200,50);
-        delete_dokter.setBounds(475,260,200,50);
-        absensi_dokter.setBounds(475,340,200,50);
-        hitung_gaji.setBounds(475,420,200,50);
+        insertDokter.setBounds(475,100,200,50);
+        updateDokter.setBounds(475,180,200,50);
+        deleteDokter.setBounds(475,260,200,50);
+        absensiDokter.setBounds(475,340,200,50);
+        hitungGaji.setBounds(475,420,200,50);
         
         isi.add(homePertama);
-        isi.add(insert_dokter);
-        isi.add(update_dokter);
-        isi.add(delete_dokter);
-        isi.add(absensi_dokter);
-        isi.add(hitung_gaji);
+        isi.add(insertDokter);
+        isi.add(updateDokter);
+        isi.add(deleteDokter);
+        isi.add(absensiDokter);
+        isi.add(hitungGaji);
 
-        insert_dokter.addActionListener(this);
-        update_dokter.addActionListener(this);
-        delete_dokter.addActionListener(this);
-        absensi_dokter.addActionListener(this);
-        hitung_gaji.addActionListener(this);
+        insertDokter.addActionListener(this);
+        updateDokter.addActionListener(this);
+        deleteDokter.addActionListener(this);
+        absensiDokter.addActionListener(this);
+        hitungGaji.addActionListener(this);
 
         frame.add(isi);
         frame.add(menu);
