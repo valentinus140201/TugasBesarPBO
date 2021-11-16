@@ -96,8 +96,8 @@ public class ViewUpdateDataPasien implements ActionListener{
         golonganPasienTextField.setBounds(170, 10, 150, 25);
         alamatInputTextField.setBounds(170, 40, 150, 25);
         teleponInputTextField.setBounds(170, 70, 150, 25);
-        ubahDataPasien.setBounds(170, 190, 150, 25);
-        
+        ubahDataPasien.setBounds(170, 190, 150, 30);
+  
         buttonBack.setBounds(10, 190, 150, 30);
         buttonValidasi.setBounds(80, 190, 150, 30);
         
