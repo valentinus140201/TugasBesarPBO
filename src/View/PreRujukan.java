@@ -29,91 +29,95 @@ import org.jdatepicker.impl.UtilDateModel;
 
 public class PreRujukan implements ActionListener{
     
-    JFrame frame = new JFrame("Absensi Dokter");
+    JFrame preRujukan = new JFrame("PRE RUJUKAN");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     JLabel labNid = new JLabel("NIK");
     JTextField textNid = new JTextField();
     JLabel namars = new JLabel("Rumah Sakit");
     
-    
-    
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     JButton submit = new JButton("SUBMIT");
     String[] listrs = {"Boromeus", "Santosa Pasir Kaliki", "Santosa Kopo", "Immanuel"};
     JComboBox rs = new JComboBox(listrs);
     
     private ControllerPasien control = new ControllerPasien();
     
-    
-    
     public PreRujukan(){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        preRujukan.setSize(1200, 620);
+        preRujukan.setLocationRelativeTo(null);
+        preRujukan.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
         
-        labNid.setBounds(290, 230, 100, 20);
-        textNid.setBounds(400, 230, 200, 20);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
         
-        namars.setBounds(290, 260, 100, 20);
-        rs.setBounds(400, 260, 200, 20);
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320, 10, 90, 30);
+        menuDokter.setBounds(520, 10, 90, 30);
+        menuAdmin.setBounds(720, 10, 120, 30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        
+        labNid.setBounds(40, 10, 160, 25);
+        textNid.setBounds(120, 10, 160, 25);
+        
+        namars.setBounds(40, 60, 160, 25);
+        rs.setBounds(120, 60, 160, 25);
         
         submit.addActionListener(this);
-        submit.setBounds(350, 350, 150, 50);
+        submit.setBounds(80, 120, 160, 25);
         
         isi.add(namars);
         isi.add(rs);
         isi.add(labNid);
         isi.add(textNid);
         isi.add(submit);
+
+        preRujukan.add(isi);
+        preRujukan.add(menu);
         
+        preRujukan.setUndecorated(true);
+        preRujukan.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        preRujukan.setVisible(true);
+        preRujukan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
     }
-    
-    
+        
     @Override
     public void actionPerformed(ActionEvent ae) {
         String command = ae.getActionCommand();
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                preRujukan.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                preRujukan.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                preRujukan.setVisible(false);
                 break; 
             case "SUBMIT":
                 String strnid = textNid.getText();
                 Pasien pasien = control.getPasien(strnid);
                 String strrs = String.valueOf(rs.getSelectedItem());;
-                frame.setVisible(false);
+                preRujukan.setVisible(false);
                 new Rujukan(pasien, strrs);
             default: 
                 break;
