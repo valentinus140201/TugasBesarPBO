@@ -105,6 +105,7 @@ public class InputDokter implements ActionListener{
         isi.add(labNik);
         textNik.setBounds(120, 10, 160, 25);
         isi.add(textNik);
+       
         labNama.setBounds(40, 90, 160, 25);
         isi.add(labNama);
         textNama.setBounds(120, 90, 160, 25);
