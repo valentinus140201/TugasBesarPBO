@@ -122,18 +122,21 @@ public class UpdateDokter implements ActionListener{
         
         datePicker.setBounds(120, 50, 160, 25);
         labTgllahir.setBounds(40, 90, 160, 25);
-        
         isi.add(labTgllahir);
         isi.add(datePicker);
         
-        labGoldar.setBounds(50, 180, 80, 20);
-        
+        labGoldar.setBounds(40, 130, 160, 25);
         isi.add(labGoldar);
         
-        golo.setBounds(200, 180, 50, 15);
-        gola.setBounds(250, 180, 50, 15);
-        golb.setBounds(300, 180, 50, 15);
-        golab.setBounds(350, 180, 50, 15);
+        golo.setBounds(140, 135, 50, 15);
+        gola.setBounds(190, 135, 50, 15);
+        golb.setBounds(240, 135, 50, 15);
+        golab.setBounds(290, 135, 50, 15);
+        
+        golo.setBackground(Color.ORANGE);
+        gola.setBackground(Color.ORANGE);
+        golb.setBackground(Color.ORANGE);
+        golab.setBackground(Color.ORANGE);
         
         ButtonGroup gd = new ButtonGroup();
         
@@ -147,29 +150,35 @@ public class UpdateDokter implements ActionListener{
         isi.add(golb);
         isi.add(golab);
         
-        labGender.setBounds(50, 220, 80, 20);
+        labGender.setBounds(40, 160, 160, 25);
         isi.add(labGender);
-        male.setBounds(200, 220, 50, 15);
-        female.setBounds(270, 220, 70, 15);
+        
+        male.setBounds(140, 165, 50, 15);
+        female.setBounds(190, 165, 70, 15);
+        
+        male.setBackground(Color.ORANGE);
+        female.setBackground(Color.ORANGE);
+        
         ButtonGroup jenisK = new ButtonGroup();
+        
         jenisK.add(male);
         jenisK.add(female);
         isi.add(male);
         isi.add(female);
         
-        labNid.setBounds(50, 250, 80, 20);
+        labNid.setBounds(40, 200, 160, 25);
         isi.add(labNid);
-        textNid.setBounds(200, 250, 300, 20);
+        textNid.setBounds(120, 200, 160, 25);
         isi.add(textNid);
         
-        labPoli.setBounds(50, 280, 80, 20);
+        labPoli.setBounds(40, 250, 160, 25);
         isi.add(labPoli);
-        Poli.setBounds(200, 280, 300, 20);
+        Poli.setBounds(120, 250, 160, 25);
         isi.add(Poli);
         
-        labNotelp.setBounds(50, 310, 80, 20);
+        labNotelp.setBounds(40, 300, 160, 25);
         isi.add(labNotelp);
-        textNotelp.setBounds(200, 310, 300, 20);
+        textNotelp.setBounds(120, 300, 160, 25);
         isi.add(textNotelp);
         
         labAlamat.setBounds(50, 340, 80, 20);
