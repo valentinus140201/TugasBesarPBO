@@ -106,7 +106,7 @@ public class viewTambahRiwayatPasien implements ActionListener{
         jumlahJenisObatField.setBounds(220, 160, 120, 25);
         
         buttonPrev.setBounds(80, 200, 100, 25);
-        buttonInsert.setBounds(200, 200, 250, 25);
+        buttonInsert.setBounds(200, 250, 250, 25);
         buttonNext.setBounds(200,200, 100, 25);
        
         menuPasien.setBounds(320,10,90,30);
@@ -236,7 +236,7 @@ public class viewTambahRiwayatPasien implements ActionListener{
                     }
                 }
                 break;
-            case "TAMBAHKAN RIWAYAT":
+            case "TAMBAHKAN RIWAYAT PASIEN":
                 Pasien p = new Pasien();
                 try {
                     p = ControllerPasien.getPasien(NIKField.getText());
@@ -246,9 +246,10 @@ public class viewTambahRiwayatPasien implements ActionListener{
                     List<String> namaObats = new ArrayList<>();
                     ArrayList<Obat> obatPasien = new ArrayList<>();
                     RP.setTanggalKunjungan((Date)tglKunjungan.getModel().getValue());
+                    System.out.println(p.getNIK());
                     for(int i = 0 ; i < namaObatFields.length ; i++){
                         obatPasien.add(new ControllerObat().getObat(namaObatFields[i].getText()));
-                        ControllerObat.insertResepObatPasien(obatPasien.get(i).getIDObat(), p.getNIK());
+                        ControllerObat.insertResepObatPasien(obatPasien.get(i).getIDObat(), NIKField.getText());
                     }
                     RP.setResepObat(namaObats);
                     ControllerRiwayatPasien.insertNewRiwayatPasien(RP,p.getNIK());

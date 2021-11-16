@@ -5,6 +5,7 @@
  */
 package View;
 
+import Model.Singleton;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -28,6 +29,7 @@ public class MenuAdmin implements ActionListener{
     JButton menu_pasien = new JButton("PASIEN");
     JButton menu_dokter = new JButton("DOKTER");
     JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton logout = new JButton("LOG OUT");
     JButton input_obat = new JButton("INPUT OBAT");
     JButton restock_obat = new JButton("RESTOCK OBAT");
     JButton rujukan = new JButton("RUJUKAN");
@@ -49,17 +51,20 @@ public class MenuAdmin implements ActionListener{
         isi.setBackground(Color.ORANGE);
         menu.setBackground(Color.ORANGE);
         
-        menu_pasien.setBounds(320,10,90,30);
-        menu_dokter.setBounds(520,10,90,30);
-        menu_admin.setBounds(720,10,120,30);
+        menu_pasien.setBounds(250,10,90,30);
+        menu_dokter.setBounds(430,10,90,30);
+        menu_admin.setBounds(590,10,120,30);
+        logout.setBounds(790,10,120,30);
         
         menu.add(menu_dokter);
         menu.add(menu_pasien);
         menu.add(menu_admin);
+        menu.add(logout);
         
         menu_dokter.addActionListener(this);
         menu_pasien.addActionListener(this);
         menu_admin.addActionListener(this);
+        logout.addActionListener(this);
         
         String homesPertama = "MENU ADMINISTRASI";
         
@@ -118,6 +123,12 @@ public class MenuAdmin implements ActionListener{
                 new ReStockObat();
                 frame.setVisible(false);
                 break;
+            case "LOG OUT"    :
+                Singleton.getInstance().setStaff(null);
+                Singleton.getInstance().setCabang(null);
+                frame.setVisible(false);;
+                new LoginScreen();
+                break;
             case "RUJUKAN":
                 new PreRujukan();
                 frame.setVisible(false);
@@ -130,4 +141,5 @@ public class MenuAdmin implements ActionListener{
                 break;
         }
     }
+    
 }

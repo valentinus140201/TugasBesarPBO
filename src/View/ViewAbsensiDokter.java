@@ -29,19 +29,17 @@ import org.jdatepicker.impl.UtilDateModel;
 
 public class ViewAbsensiDokter implements ActionListener{
     
-    JFrame frame = new JFrame("Absensi Dokter");
+    JFrame absensiDokter = new JFrame("ABSENSI DOKTER");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     JLabel labNid = new JLabel("NID");
     JLabel labTanggal = new JLabel("Tanggal");
     JLabel labStatus = new JLabel("Status");
     JTextField textNid = new JTextField();
-    
-    
-    
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+     
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     JButton submit = new JButton("SUBMIT");
     UtilDateModel model = new UtilDateModel();
     Properties p = new Properties();
@@ -55,39 +53,44 @@ public class ViewAbsensiDokter implements ActionListener{
     
     public ViewAbsensiDokter(){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        absensiDokter.setSize(1200, 620);
+        absensiDokter.setLocationRelativeTo(null);
+        absensiDokter.setLayout(null);
+       
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
         
-        labNid.setBounds(290, 230, 100, 20);
-        labTanggal.setBounds(290, 260, 100, 20);
-        labStatus.setBounds(290, 290, 100, 20);
-        textNid.setBounds(400, 230, 100, 20);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        
+        labNid.setBounds(40, 10, 160, 25);
+        labTanggal.setBounds(40, 50, 160, 25);
+        labStatus.setBounds(40, 90, 160, 25);
+        textNid.setBounds(120, 10, 160, 25);
+        Status.setBounds(120, 90, 160, 25);
         
         p.put("text.today", "Today");
         p.put("text.month", "Month");
         p.put("text.year", "Year");
-        datePicker.setBounds(400, 260, 100, 20);
-        
-        Status.setBounds(400, 290, 100, 20);
+        datePicker.setBounds(120, 50, 160, 25);
         
         submit.addActionListener(this);
-        submit.setBounds(350, 350, 150, 50);
+        submit.setBounds(80, 150, 100, 25);
         
         isi.add(labNid);
         isi.add(textNid);
@@ -95,13 +98,16 @@ public class ViewAbsensiDokter implements ActionListener{
         isi.add(datePicker);
         isi.add(labStatus);
         isi.add(Status);
-        isi.add(submit);
+        isi.add(submit);        
+      
+        absensiDokter.add(isi);
+        absensiDokter.add(menu);
+      
         
-        
-        
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
+        absensiDokter.setUndecorated(true);
+        absensiDokter.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        absensiDokter.setVisible(true);
+        absensiDokter.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     
@@ -111,15 +117,15 @@ public class ViewAbsensiDokter implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                absensiDokter.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                absensiDokter.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                absensiDokter.setVisible(false);
                 break; 
             case "SUBMIT":
                 String strnid = textNid.getText();
@@ -127,7 +133,7 @@ public class ViewAbsensiDokter implements ActionListener{
                 String strstatus = String.valueOf(Status.getSelectedItem());
                 Date tanggal = (Date)datePicker.getModel().getValue();
                 boolean absen = control.addAbsen(strnid, tanggal, strstatus);
-                frame.setVisible(false);
+                absensiDokter.setVisible(false);
                 JOptionPane.showMessageDialog(null,"Absen Dengan NID " + strnid + ", Telah Diisi");
                 new MenuDokter();
                 
