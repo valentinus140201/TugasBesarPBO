@@ -29,56 +29,59 @@ import org.jdatepicker.impl.UtilDateModel;
 
 public class HitungGaji implements ActionListener{
     
-    JFrame frame = new JFrame("Absensi Dokter");
+    JFrame hitungGaji = new JFrame("HITUNG GAJI");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     JLabel labNid = new JLabel ("NID    :");
     JLabel labNama = new JLabel("Nama   :");
     JLabel labGaji = new JLabel("Gaji   :");
-    
-    
-    
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     
     private ControllerDokter control = new ControllerDokter();
-    
-    
-    
+
     public HitungGaji(Dokter dokter){
         
         System.out.println(dokter.getNama());
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        hitungGaji.setSize(1200, 620);
+        hitungGaji.setLocationRelativeTo(null);
+        hitungGaji.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
         
-        labNid.setBounds(290, 230, 100, 20);
-        labNama.setBounds(290, 260, 100, 20);
-        labGaji.setBounds(290, 290, 100, 20);
-        //textNid.setBounds(400, 230, 100, 20);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        
+        labNid.setBounds(40, 10, 160, 25);
+        labNama.setBounds(40, 50, 160, 25);
+        labGaji.setBounds(40, 90, 160, 25);
+        
         JLabel nama = new JLabel(dokter.getNama());
         JLabel nid = new JLabel(dokter.getNID());
         JLabel gaji = new JLabel(String.valueOf(dokter.hitungGaji()));
-        nama.setBounds(400, 230, 100, 20);
-        nid.setBounds(400, 260, 100, 20);
-        gaji.setBounds(400, 290, 100, 20);
+        
+        nama.setBounds(120, 10, 160, 25);
+        nid.setBounds(120, 50, 160, 25);
+        gaji.setBounds(120, 90, 160, 25);
         
         isi.add(labNid);
         isi.add(labNama);
@@ -86,14 +89,15 @@ public class HitungGaji implements ActionListener{
         isi.add(nama);
         isi.add(nid);
         isi.add(gaji);
-        
-        
-        
-        
-        
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
+
+        hitungGaji.add(isi);
+        hitungGaji.add(menu);
+    
+        hitungGaji.setUndecorated(true);
+        hitungGaji.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        hitungGaji.setVisible(true);
+        hitungGaji.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
     }
     
     
@@ -103,15 +107,15 @@ public class HitungGaji implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                hitungGaji.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                hitungGaji.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                hitungGaji.setVisible(false);
                 break; 
             default: 
                 break;
