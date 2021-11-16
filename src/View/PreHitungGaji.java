@@ -91,7 +91,12 @@ public class PreHitungGaji implements ActionListener{
         
         preHitungGaji.add(isi);
         preHitungGaji.add(menu);
+        
+        preHitungGaji.setUndecorated(true);
+        preHitungGaji.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
         preHitungGaji.setVisible(true);
+        preHitungGaji.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
     
     
