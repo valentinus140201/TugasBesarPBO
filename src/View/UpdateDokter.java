@@ -181,12 +181,12 @@ public class UpdateDokter implements ActionListener{
         textNotelp.setBounds(120, 300, 160, 25);
         isi.add(textNotelp);
         
-        labAlamat.setBounds(50, 340, 80, 20);
+        labAlamat.setBounds(40, 350, 160, 25);
         isi.add(labAlamat);
-        textAlamat.setBounds(200, 340, 300, 20);
+        textAlamat.setBounds(120, 350, 160, 25);
         isi.add(textAlamat);
 
-        submit.setBounds(350,400,120,50);
+        submit.setBounds(80,400,100,25);
         submit.addActionListener(this);
         isi.add(submit);
 
