@@ -163,25 +163,21 @@ public class InputDokter implements ActionListener{
         
         labNid.setBounds(40, 200, 160, 25);
         isi.add(labNid);
-        
         textNid.setBounds(120, 200, 160, 25);
         isi.add(textNid);
         
         labPoli.setBounds(40, 250, 160, 25);
         isi.add(labPoli);
-        
         Poli.setBounds(120, 250, 160, 25);
         isi.add(Poli);
         
         labNotelp.setBounds(40, 300, 160, 25);
         isi.add(labNotelp);
-        
         textNotelp.setBounds(120, 300, 160, 25);
         isi.add(textNotelp);
         
         labAlamat.setBounds(40, 350, 160, 25);
         isi.add(labAlamat);
-        
         textAlamat.setBounds(120, 350, 160, 25);
         isi.add(textAlamat);
         
