@@ -68,7 +68,6 @@ public class PreUpdateDokter implements ActionListener, MouseListener{
         menuPasien.addActionListener(this);
         menuAdmin.addActionListener(this);
         
-        
         ArrayList<Dokter> dokters = control.getAllDokter();
         String[] header = {"NIK", "NID", "Nama", "Poliklinik"};
         
