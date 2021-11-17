@@ -30,60 +30,63 @@ import org.jdatepicker.impl.UtilDateModel;
 
 public class PrePencairanResepDokter implements ActionListener{
     
-    JFrame frame = new JFrame("Absensi Dokter");
+    JFrame prePencairanResepDokter = new JFrame("PRE PENCAIRAN RESEP DOKTER");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
-    JLabel labNik = new JLabel("NIk");
+    JLabel labNik = new JLabel("NIK");
     JTextField textNik = new JTextField();
-    
-    
-    
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     JButton cari = new JButton("CARI");
 
     private ControllerDokter control = new ControllerDokter();
-    
-    
-    
+
     public PrePencairanResepDokter(){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        prePencairanResepDokter.setSize(1200, 620);
+        prePencairanResepDokter.setLocationRelativeTo(null);
+        prePencairanResepDokter.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
         
-        labNik.setBounds(290, 230, 100, 20);
-        textNik.setBounds(400, 230, 100, 20);
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
         
-
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        
+        labNik.setBounds(40, 20, 160, 25);
+        textNik.setBounds(120, 20, 160, 25);
+        
         cari.addActionListener(this);
-        cari.setBounds(350, 350, 150, 50);
+        cari.setBounds(60, 60, 120, 30);
         
         isi.add(labNik);
         isi.add(textNik);
         isi.add(cari);
         
+        prePencairanResepDokter.add(isi);
+        prePencairanResepDokter.add(menu);
         
-        
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
+        prePencairanResepDokter.setUndecorated(true);
+        prePencairanResepDokter.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        prePencairanResepDokter.setVisible(true);
+        prePencairanResepDokter.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
     
     
@@ -93,21 +96,21 @@ public class PrePencairanResepDokter implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                prePencairanResepDokter.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                prePencairanResepDokter.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                prePencairanResepDokter.setVisible(false);
                 break; 
             case "CARI":
                 ControllerTransaksi control = new ControllerTransaksi();
                 String strnik = textNik.getText();
                 ArrayList<Transaksi> listTransaksi = control.getAllTransaksi(strnik);
-                frame.setVisible(false);
+                prePencairanResepDokter.setVisible(false);
                 new PencairanResepDokter(listTransaksi);
                 break;
             default: 
