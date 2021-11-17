@@ -33,7 +33,7 @@ import javax.swing.WindowConstants;
  */
 public class ViewBeliObatPasien implements ActionListener{
     Transaksi t = new Transaksi();
-    JFrame beliObatPasien = new JFrame();
+    JFrame beliObatPasien = new JFrame("JUMLAH JENIS OBAT ");
     JLabel jumlahJenisObatLabel,totalHargaLabel;
     JLabel[] namaObatLabel,jumlahObatLabel;
     JTextField jumlahJenisObatField;
@@ -46,11 +46,13 @@ public class ViewBeliObatPasien implements ActionListener{
     String NIKInput;
     double hargaKonsul;
     Transaksi tempTransaksi;
+    
     public ViewBeliObatPasien(Transaksi transaksi){
         totalHargaLabel = new JLabel();
         beliObatPasien.setSize(1200, 620);
         jumlahJenisObatLabel = new JLabel("Jumlah Jenis Obat");
         jumlahJenisObatField = new JTextField();
+        
         buttonLanjut = new JButton("NEXT");
         buttonHitungTotalHarga = new JButton("HITUNG TOTAL HARGA");
         buttonPrev = new JButton("BACK");
@@ -69,10 +71,10 @@ public class ViewBeliObatPasien implements ActionListener{
         panelContent.setBounds(10,10,1170,500);
         
         jumlahJenisObatLabel.setBounds(40, 20, 160, 25);
-        jumlahJenisObatField.setBounds(120, 20, 160, 25);
-        buttonLanjut.setBounds(100, 200, 120, 30);
-        buttonPrev.setBounds(40, 200, 100, 30);
-        buttonHitungTotalHarga.setBounds(60, 120, 120, 30);
+        jumlahJenisObatField.setBounds(150, 20, 160, 25);
+        buttonLanjut.setBounds(40, 120, 120, 30);
+        buttonPrev.setBounds(40, 120, 120, 30);
+        buttonHitungTotalHarga.setBounds(200, 120, 170, 30);
         totalHargaLabel.setBounds(60, 140, 160, 25);
         
         menuPasien.setBounds(320,10,90,30);
@@ -94,8 +96,6 @@ public class ViewBeliObatPasien implements ActionListener{
         beliObatPasien.add(panelContent);
         beliObatPasien.setLayout(null);
         beliObatPasien.setLocationRelativeTo(null);
-        beliObatPasien.setVisible(true);
-        beliObatPasien.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         buttonLanjut.addActionListener(this);
         buttonHitungTotalHarga.addActionListener(this);
@@ -144,7 +144,7 @@ public class ViewBeliObatPasien implements ActionListener{
                     jumlahObatFields = new JTextField[jml];
                     for(int i = 0; i < jml; i++){
                         namaObatLabel[i] = new JLabel("Nama Obat " + (i+1));
-                        jumlahObatLabel[i] = new JLabel("Jumlah Obat " + (i+1) + "(Miligram)");
+                        jumlahObatLabel[i] = new JLabel("Jumlah Obat " + (i+1) + " (Miligram)");
                         namaObatFields[i] = new JTextField();
                         jumlahObatFields[i] = new JTextField();
                         
@@ -159,7 +159,7 @@ public class ViewBeliObatPasien implements ActionListener{
                         panelContent.add(jumlahObatFields[i]);
                     }
                 } catch (Exception exception) {
-                    JOptionPane.showMessageDialog(null, "input bukan angka!");
+                    JOptionPane.showMessageDialog(null, "INPUT BUKAN ANGKA!");
                     if(JOptionPane.OK_OPTION == 0){
                         jumlahJenisObatField.setText("");
                     }
