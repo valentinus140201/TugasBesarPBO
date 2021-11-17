@@ -26,7 +26,7 @@ import java.util.Properties;
 public class PreHitungGaji implements ActionListener{
     ControllerDokter control = new ControllerDokter();
     
-    JFrame preHitungGaji = new JFrame("PRE HITUNG GAJI");
+    JFrame preHitungGaji = new JFrame("PRE HITUNG GAJI DOKTER");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
@@ -70,7 +70,7 @@ public class PreHitungGaji implements ActionListener{
         hitung.addActionListener(this);
         
         nids.setBounds(40, 20, 160, 30);
-        hitung.setBounds(100,80,120,30);
+        hitung.setBounds(120,80,120,30);
         
         listnid = new String[dokters.size()];
         
@@ -81,14 +81,11 @@ public class PreHitungGaji implements ActionListener{
         
         nid = new JComboBox(listnid);
         nid.setBounds(100, 20, 160, 30);
-        
-        
-        
+
         isi.add(hitung);
         isi.add(nids);
         isi.add(nid);
-        
-        
+
         preHitungGaji.add(isi);
         preHitungGaji.add(menu);
         

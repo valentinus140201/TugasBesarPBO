@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
 
 public class LihatKeuntungan implements ActionListener{
 /**
@@ -19,36 +20,42 @@ public class LihatKeuntungan implements ActionListener{
  * @author hp
  */
     
-    JFrame frame = new JFrame("MenuAdmin");
+    JFrame lihatKeuntunganKlinik = new JFrame("LIHAT KEUNTUNGAN KLINIK");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton kembali_ke_menu = new JButton("KEMBALI KE MENU");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
+    JButton kembaliKeMenu = new JButton("KEMBALI KE MENU");
     
 
     public LihatKeuntungan(){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        lihatKeuntunganKlinik.setSize(1200, 620);
+        lihatKeuntunganKlinik.setLocationRelativeTo(null);
+        lihatKeuntunganKlinik.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
 
         
         JLabel labidCabang = new JLabel("Nama Cabang : ");
@@ -63,23 +70,26 @@ public class LihatKeuntungan implements ActionListener{
         JLabel isilabKeuntungan = new JLabel("Rp. " + Keuntungan);
         
         
-        labidCabang.setBounds(50, 80, 110, 20);
+        labidCabang.setBounds(40, 20, 160, 30);
         isi.add(labidCabang);
-        isilabidCabang.setBounds(200, 80, 300, 20);
+        isilabidCabang.setBounds(120, 20, 160, 30);
         isi.add(isilabidCabang);
-        labKeuntungan.setBounds(50, 110, 80, 20);
+        labKeuntungan.setBounds(40, 80, 160, 30);
         isi.add(labKeuntungan);
-        isilabKeuntungan.setBounds(200, 110, 300, 20);
+        isilabKeuntungan.setBounds(120, 80, 160, 30);
         isi.add(isilabKeuntungan);
         
-        kembali_ke_menu.addActionListener(this);
-        kembali_ke_menu.setBounds(350, 200, 150, 50);
-        isi.add(kembali_ke_menu);
+        kembaliKeMenu.addActionListener(this);
+        kembaliKeMenu.setBounds(100, 120, 160, 30);
+        isi.add(kembaliKeMenu);
         
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
+        lihatKeuntunganKlinik.add(isi);
+        lihatKeuntunganKlinik.add(menu);
         
+        lihatKeuntunganKlinik.setUndecorated(true);
+        lihatKeuntunganKlinik.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        lihatKeuntunganKlinik.setVisible(true);
+        lihatKeuntunganKlinik.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     @Override
@@ -88,18 +98,18 @@ public class LihatKeuntungan implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                lihatKeuntunganKlinik.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                lihatKeuntunganKlinik.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                lihatKeuntunganKlinik.setVisible(false);
                 break;
             case "KEMBALI KE MENU":
-                frame.setVisible(false);
+                lihatKeuntunganKlinik.setVisible(false);
                 new MenuAdmin();
                 break;
             default: 

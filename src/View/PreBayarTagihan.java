@@ -26,13 +26,13 @@ import java.util.Properties;
 public class PreBayarTagihan implements ActionListener{
     ControllerDokter control = new ControllerDokter();
     
-    JFrame frame = new JFrame("Pre Update Dokter");
+    JFrame preBayarTagihan = new JFrame("PRE BAYAR TAGIHAN");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     
     JLabel idTransaksi = new JLabel("Id Transaksi");
     JButton hitung = new JButton("LIHAT TRANSAKSI");
@@ -42,28 +42,34 @@ public class PreBayarTagihan implements ActionListener{
     
     public PreBayarTagihan(ArrayList<Transaksi> listTransaksi){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        preBayarTagihan.setSize(1200, 620);
+        preBayarTagihan.setLocationRelativeTo(null);
+        preBayarTagihan.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         hitung.addActionListener(this);
         
-        idTransaksi.setBounds(290, 260, 100, 20);
-        hitung.setBounds(350,300,120,50);
+        idTransaksi.setBounds(40, 20, 160, 30);
+        hitung.setBounds(100,80,120,30);
         
         listIdTransaksi = new String[listTransaksi.size()];
         
@@ -73,18 +79,19 @@ public class PreBayarTagihan implements ActionListener{
         }
         
         boxIdTransaksi = new JComboBox(listIdTransaksi);
-        boxIdTransaksi.setBounds(400, 260, 100, 20);
-        
-        
+        boxIdTransaksi.setBounds(120, 20, 160, 30);
         
         isi.add(hitung);
         isi.add(boxIdTransaksi);
         isi.add(idTransaksi);
         
+        preBayarTagihan.add(isi);
+        preBayarTagihan.add(menu);
         
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
+        preBayarTagihan.setUndecorated(true);
+        preBayarTagihan.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        preBayarTagihan.setVisible(true);
+        preBayarTagihan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     
@@ -94,22 +101,22 @@ public class PreBayarTagihan implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                preBayarTagihan.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                preBayarTagihan.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                preBayarTagihan.setVisible(false);
                 break;
             case "LIHAT TRANSAKSI":
                 ControllerTransaksi control = new ControllerTransaksi();
                 String strIdTransaksi = String.valueOf(boxIdTransaksi.getSelectedItem());;
                 Transaksi transaksi = control.getTransaksi(strIdTransaksi);
                 new BayarTagihan(transaksi);
-                frame.setVisible(false);
+                preBayarTagihan.setVisible(false);
                 break;
              default: 
                 break;

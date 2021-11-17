@@ -23,7 +23,7 @@ import javax.swing.WindowConstants;
  * @author V for Vladimir
  */
 public class ViewBeliObat {
-    JFrame beliObat = new JFrame();
+    JFrame beliObat = new JFrame("MASUKAN NAMA OBAT");
     JLabel jumlahJenisObatLabel,namaObatLabel,totalHarga,jumlahObatLabel;
     JTextField jumlahJenisObatField;
     JTextField[] namaObatFields,jumlahObatFields;
@@ -35,36 +35,37 @@ public class ViewBeliObat {
    
     public ViewBeliObat(){
         beliObat.setSize(1200, 620);
+        beliObat.setLocationRelativeTo(null);
         jumlahJenisObatLabel = new JLabel("Jumlah Jenis Obat");
         jumlahJenisObatField = new JTextField();
+        
         buttonLanjut = new JButton("NEXT");
-        buttonHitungTotalHarga = new JButton("Hitung Total Harga");
+        buttonHitungTotalHarga = new JButton("HITUNG TOTAL HARGA");
         panelContent = new JPanel();
         panelMenu = new JPanel();
         
         panelContent.setLayout(null);
         panelMenu.setLayout(null);
         
-        panelContent.setBackground(Color.ORANGE);
+        panelContent.setBackground(Color.CYAN);
         panelMenu.setBackground(Color.ORANGE);
         
-        panelMenu.setBounds(10,10,200,640);
-        panelContent.setBounds(230,10,930,640);
-        jumlahJenisObatLabel.setBounds(265, 10, 140, 25);
-        jumlahJenisObatField.setBounds(420, 10, 140, 25);
-        buttonLanjut.setBounds(265, 400, 150, 25);
-        buttonHitungTotalHarga.setBounds(740, 500, 150, 25);
+        panelMenu.setBounds(10,520,1170,50);
+        panelContent.setBounds(10,10,1170,500);
         
-        menuPasien.setBounds(35,200,120,50);
-        menuDokter.setBounds(35,260,120,50);
-        menuAdmin.setBounds(35,320,120,50);
+        jumlahJenisObatLabel.setBounds(40, 20, 160, 25);
+        jumlahJenisObatField.setBounds(120, 20, 160, 25);
+        buttonLanjut.setBounds(40, 80, 120, 30);
+        buttonHitungTotalHarga.setBounds(120, 80, 120, 30);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
         
         panelContent.add(jumlahJenisObatLabel);
         panelContent.add(jumlahJenisObatField);
         panelContent.add(buttonLanjut);
         panelContent.add(buttonHitungTotalHarga);
-        panelContent.add(buttonLanjut);
-        panelContent.add(buttonLanjut);
         panelMenu.add(menuPasien);
         panelMenu.add(menuDokter);
         panelMenu.add(menuAdmin);

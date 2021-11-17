@@ -29,40 +29,45 @@ import javax.swing.table.JTableHeader;
 
 public class LihatSemuaTransaksi implements ActionListener{
     
-    JFrame frame = new JFrame("Lihat Semua Transaksi");
+    JFrame lihatSemuaTransaksi = new JFrame("LIHAT SEMUA TRANSAKSI");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
-    JButton obatPasien = new JButton("PERNCAIRAN RESEP DOKTER");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
+    JButton obatPasien = new JButton("PENCAIRAN RESEP DOKTER");
     JButton lihatTransaksi = new JButton("LIHAT SEMUA TRANSAKSI");
     
     JTable table;
     JScrollPane scroll;
-    
-    
+  
     public LihatSemuaTransaksi(){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        lihatSemuaTransaksi.setSize(1200, 620);
+        lihatSemuaTransaksi.setLocationRelativeTo(null);
+        lihatSemuaTransaksi.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
+        
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
         
         ArrayList<Transaksi> listTransaksi = ControllerTransaksi.getAllTransaksi("");
         String[] header = {"Id Transaksi", "NIK", "Tanggal", "Nama", "Total Harga"};
@@ -80,16 +85,17 @@ public class LihatSemuaTransaksi implements ActionListener{
         
         table = new JTable(isitable, header);
         scroll = new JScrollPane(table);
-        scroll.setBounds(50, 50, 800, 500);
+        scroll.setBounds(50, 50, 800, 400);
         isi.add(scroll);
 
         
-        frame.add(isi);
-        frame.add(menu);
-        frame.setUndecorated(true);
-        frame.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        lihatSemuaTransaksi.add(isi);
+        lihatSemuaTransaksi.add(menu);
+        
+        lihatSemuaTransaksi.setUndecorated(true);
+        lihatSemuaTransaksi.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        lihatSemuaTransaksi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        lihatSemuaTransaksi.setVisible(true);
     }
     
     
@@ -99,15 +105,15 @@ public class LihatSemuaTransaksi implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                lihatSemuaTransaksi.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                lihatSemuaTransaksi.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                lihatSemuaTransaksi.setVisible(false);
                 break;
             default: 
                 break;
