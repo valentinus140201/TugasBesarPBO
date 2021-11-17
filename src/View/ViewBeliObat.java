@@ -23,7 +23,7 @@ import javax.swing.WindowConstants;
  * @author V for Vladimir
  */
 public class ViewBeliObat {
-    JFrame beliObat = new JFrame();
+    JFrame beliObat = new JFrame("MASUKAN NAMA OBAT");
     JLabel jumlahJenisObatLabel,namaObatLabel,totalHarga,jumlahObatLabel;
     JTextField jumlahJenisObatField;
     JTextField[] namaObatFields,jumlahObatFields;
@@ -35,17 +35,19 @@ public class ViewBeliObat {
    
     public ViewBeliObat(){
         beliObat.setSize(1200, 620);
+        beliObat.setLocationRelativeTo(null);
         jumlahJenisObatLabel = new JLabel("Jumlah Jenis Obat");
         jumlahJenisObatField = new JTextField();
+        
         buttonLanjut = new JButton("NEXT");
-        buttonHitungTotalHarga = new JButton("Hitung Total Harga");
+        buttonHitungTotalHarga = new JButton("HITUNG TOTAL HARGA");
         panelContent = new JPanel();
         panelMenu = new JPanel();
         
         panelContent.setLayout(null);
         panelMenu.setLayout(null);
         
-        panelContent.setBackground(Color.ORANGE);
+        panelContent.setBackground(Color.CYAN);
         panelMenu.setBackground(Color.ORANGE);
         
         panelMenu.setBounds(10,520,1170,50);
@@ -53,8 +55,8 @@ public class ViewBeliObat {
         
         jumlahJenisObatLabel.setBounds(40, 20, 160, 25);
         jumlahJenisObatField.setBounds(120, 20, 160, 25);
-        buttonLanjut.setBounds(140, 80, 120, 30);
-        buttonHitungTotalHarga.setBounds(60, 80, 120, 30);
+        buttonLanjut.setBounds(40, 80, 120, 30);
+        buttonHitungTotalHarga.setBounds(120, 80, 120, 30);
         
         menuPasien.setBounds(320,10,90,30);
         menuDokter.setBounds(520,10,90,30);
@@ -64,8 +66,6 @@ public class ViewBeliObat {
         panelContent.add(jumlahJenisObatField);
         panelContent.add(buttonLanjut);
         panelContent.add(buttonHitungTotalHarga);
-        panelContent.add(buttonLanjut);
-        panelContent.add(buttonLanjut);
         panelMenu.add(menuPasien);
         panelMenu.add(menuDokter);
         panelMenu.add(menuAdmin);
