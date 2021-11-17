@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import Model.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+import javax.swing.WindowConstants;
 
 /**
  *
@@ -22,40 +24,46 @@ import javax.swing.JOptionPane;
  */
 public class BayarTagihan implements ActionListener{
     
-    JFrame frame = new JFrame("MenuAdmin");
+    JFrame frameBayarTagihan = new JFrame("BAYAR TAGIHAN");
     JPanel menu = new JPanel();
     JPanel isi = new JPanel();
     
-    JButton menu_pasien = new JButton("PASIEN");
-    JButton menu_dokter = new JButton("DOKTER");
-    JButton menu_admin = new JButton("ADMINISTRASI");
+    JButton menuPasien = new JButton("PASIEN");
+    JButton menuDokter = new JButton("DOKTER");
+    JButton menuAdmin = new JButton("ADMINISTRASI");
     JButton bayarTagihan = new JButton("BAYAR TAGIHAN");
     Transaksi tempTransaksi;
 
     public BayarTagihan(Transaksi transaksi){
         
-        frame.setSize(1200, 700);
-        frame.setLocationRelativeTo(null);
-        frame.setLayout(null);
+        frameBayarTagihan.setSize(1200, 620);
+        frameBayarTagihan.setLocationRelativeTo(null);
+        frameBayarTagihan.setLayout(null);
+        
         menu.setLayout(null);
         isi.setLayout(null);
-        menu.setBounds(10,10,200,640);
-        isi.setBounds(230,10,930,640);
-        isi.setBackground(Color.cyan);
-        menu.setBackground(Color.cyan);
-        menu_pasien.setBounds(35,200,120,50);
-        menu_dokter.setBounds(35,260,120,50);
-        menu_admin.setBounds(35,320,120,50);
-        menu.add(menu_dokter);
-        menu.add(menu_pasien);
-        menu.add(menu_admin);
-        menu_dokter.addActionListener(this);
-        menu_pasien.addActionListener(this);
-        menu_admin.addActionListener(this);
-        bayarTagihan.setBounds(350,300,120,50);
+        
+        menu.setBounds(10,520,1170,50);
+        isi.setBounds(10,10,1170,500);
+        
+        isi.setBackground(Color.ORANGE);
+        menu.setBackground(Color.ORANGE);
+        
+        menuPasien.setBounds(320,10,90,30);
+        menuDokter.setBounds(520,10,90,30);
+        menuAdmin.setBounds(720,10,120,30);
+        
+        menu.add(menuDokter);
+        menu.add(menuPasien);
+        menu.add(menuAdmin);
+        
+        menuDokter.addActionListener(this);
+        menuPasien.addActionListener(this);
+        menuAdmin.addActionListener(this);
+        
+        bayarTagihan.setBounds(120,200,150,30);
         bayarTagihan.addActionListener(this);
 
-        
         JLabel labIdTransaksi = new JLabel("Id Transaksi : ");
         JLabel labNamaPasien = new JLabel("Nama : ");
         JLabel labTotalTagihan = new JLabel("Total Tagihan : ");
@@ -64,26 +72,31 @@ public class BayarTagihan implements ActionListener{
         JLabel isilabNamaPasien = new JLabel(transaksi.getPasien().getNama());
         JLabel isilabTotalTagihan = new JLabel("" + transaksi.getTotal());
         
-        labIdTransaksi.setBounds(50, 80, 80, 20);
+        labIdTransaksi.setBounds(40, 50, 160, 25);
+        isilabIdTransaksi.setBounds(120, 50, 160, 25);
+        labNamaPasien.setBounds(40, 100, 160, 25);
+        isilabNamaPasien.setBounds(120, 100, 160, 25);
+        labTotalTagihan.setBounds(40, 150, 160, 25);
+        isilabTotalTagihan.setBounds(130, 150, 160, 25);
+        
         isi.add(labIdTransaksi);
-        isilabIdTransaksi.setBounds(200, 80, 300, 20);
         isi.add(isilabIdTransaksi);
-        labNamaPasien.setBounds(50, 110, 80, 20);
         isi.add(labNamaPasien);
-        isilabNamaPasien.setBounds(200, 110, 300, 20);
         isi.add(isilabNamaPasien);
-        labTotalTagihan.setBounds(50, 140, 80, 20);
         isi.add(labTotalTagihan);
-        isilabTotalTagihan.setBounds(200, 140, 300, 20);
         isi.add(isilabTotalTagihan);
         
         bayarTagihan.addActionListener(this);
-        bayarTagihan.setBounds(350, 200, 150, 50);
         isi.add(bayarTagihan);
         
-        frame.add(isi);
-        frame.add(menu);
-        frame.setVisible(true);
+        frameBayarTagihan.add(isi);
+        frameBayarTagihan.add(menu);
+        
+        frameBayarTagihan.setUndecorated(true);
+        frameBayarTagihan.getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
+        frameBayarTagihan.setVisible(true);
+        frameBayarTagihan.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    
         tempTransaksi = transaksi;
     }
 
@@ -93,19 +106,19 @@ public class BayarTagihan implements ActionListener{
         switch(command) {
             case "PASIEN": 
                 new MenuPasien();
-                frame.setVisible(false);
+                frameBayarTagihan.setVisible(false);
                 break;
             case "DOKTER":
                 new MenuDokter();
-                frame.setVisible(false);
+                frameBayarTagihan.setVisible(false);
                 break;
             case "ADMINISTRASI":
                 new MenuAdmin();
-                frame.setVisible(false);
+                frameBayarTagihan.setVisible(false);
                 break;
             case "BAYAR TAGIHAN":
                 ControllerTransaksi.insertTransaksibyBayarTagihan(tempTransaksi);
-                frame.setVisible(false);
+                frameBayarTagihan.setVisible(false);
                 new MenuAdmin();
                 JOptionPane.showMessageDialog(null, "Pembayaran Telah Berhasil, Trimaksih");
                 break;
