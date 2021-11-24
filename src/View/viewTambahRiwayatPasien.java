@@ -253,7 +253,7 @@ public class viewTambahRiwayatPasien implements ActionListener{
                     }
                     RP.setResepObat(namaObats);
                     ControllerRiwayatPasien.insertNewRiwayatPasien(RP,p.getNIK());
-                    JOptionPane.showMessageDialog(null, "riwayat ditambah");
+                    JOptionPane.showMessageDialog(null, "riwayat pasien berhasil ditambah");
                     viewTambahRiwayat.dispose();
                     new MenuPasien();
                 } catch (Exception exc) {
